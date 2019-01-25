@@ -15,7 +15,7 @@ steps:
     title: 'Update environment'
     image: bash
     commands:
-      - curl -XPUT https://api.getpostman.com/collections/3c55ec13-c74b-4323-8146-698a3e4a624b -H "X-Api-Key: ${POSTMAN_API_TOKEN}" -d "@Environment/OpenBanking Engineering ob.postman_environment.json"
+      - curl -XPUT https://api.getpostman.com/environments/3c55ec13-c74b-4323-8146-698a3e4a624b -H "X-Api-Key: ${POSTMAN_API_TOKEN}" -d "@Environment/OpenBanking Engineering ob.postman_environment.json"
     when:
       branch:
         only:
