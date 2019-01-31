@@ -3107,6 +3107,7 @@
                       "var data = JSON.parse(responseBody);",
                       "",
                       "postman.setEnvironmentVariable(\"access_token_with_consent\", data.access_token);",
+                      "postman.setEnvironmentVariable(\"refresh_token_with_consent\", data.refresh_token);",
                       "postman.setEnvironmentVariable(\"id_token\", data.id_token);"
                     ],
                     "type": "text/javascript"
