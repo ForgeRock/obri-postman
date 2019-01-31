@@ -25136,13 +25136,15 @@
                             {
                               "listen": "test",
                               "script": {
-                                "type": "text/javascript",
+                                "id": "1757e6f8-ede0-43d8-8a4c-9cfae66f2951",
                                 "exec": [
                                   "var data = JSON.parse(responseBody);",
                                   "",
                                   "postman.setEnvironmentVariable(\"access_token_with_consent\", data.access_token);",
+                                  "postman.setEnvironmentVariable(\"refresh_token_with_consent\", data.refresh_token);",
                                   "postman.setEnvironmentVariable(\"id_token\", data.id_token);"
-                                ]
+                                ],
+                                "type": "text/javascript"
                               }
                             }
                           ],
@@ -26558,6 +26560,7 @@
                                   "var data = JSON.parse(responseBody);",
                                   "",
                                   "postman.setEnvironmentVariable(\"access_token_with_consent\", data.access_token);",
+                                  "postman.setEnvironmentVariable(\"refresh_token_with_consent\", data.refresh_token);",
                                   "postman.setEnvironmentVariable(\"id_token\", data.id_token);"
                                 ],
                                 "type": "text/javascript"
