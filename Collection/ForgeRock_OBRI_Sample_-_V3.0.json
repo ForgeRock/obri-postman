@@ -20057,6 +20057,7 @@
                                   "var data = JSON.parse(responseBody);",
                                   "",
                                   "postman.setEnvironmentVariable(\"access_token_with_consent\", data.access_token);",
+                                  "postman.setEnvironmentVariable(\"refresh_token_with_consent\", data.refresh_token);",
                                   "postman.setEnvironmentVariable(\"id_token\", data.id_token);"
                                 ],
                                 "type": "text/javascript"
@@ -21314,13 +21315,15 @@
                             {
                               "listen": "test",
                               "script": {
-                                "type": "text/javascript",
+                                "id": "ad0ae4ab-5704-4465-9e4d-c0084041bf95",
                                 "exec": [
                                   "var data = JSON.parse(responseBody);",
                                   "",
                                   "postman.setEnvironmentVariable(\"access_token_with_consent\", data.access_token);",
+                                  "postman.setEnvironmentVariable(\"refresh_token_with_consent\", data.refresh_token);",
                                   "postman.setEnvironmentVariable(\"id_token\", data.id_token);"
-                                ]
+                                ],
+                                "type": "text/javascript"
                               }
                             }
                           ],
@@ -22610,6 +22613,7 @@
                                   "var data = JSON.parse(responseBody);",
                                   "",
                                   "postman.setEnvironmentVariable(\"access_token_with_consent\", data.access_token);",
+                                  "postman.setEnvironmentVariable(\"refresh_token_with_consent\", data.refresh_token);",
                                   "postman.setEnvironmentVariable(\"id_token\", data.id_token);"
                                 ],
                                 "type": "text/javascript"
@@ -23867,13 +23871,15 @@
                             {
                               "listen": "test",
                               "script": {
-                                "type": "text/javascript",
+                                "id": "03e2fd6d-1d51-4087-88da-49ce0d7ee929",
                                 "exec": [
                                   "var data = JSON.parse(responseBody);",
                                   "",
                                   "postman.setEnvironmentVariable(\"access_token_with_consent\", data.access_token);",
+                                  "postman.setEnvironmentVariable(\"refresh_token_with_consent\", data.refresh_token);",
                                   "postman.setEnvironmentVariable(\"id_token\", data.id_token);"
-                                ]
+                                ],
+                                "type": "text/javascript"
                               }
                             }
                           ],
