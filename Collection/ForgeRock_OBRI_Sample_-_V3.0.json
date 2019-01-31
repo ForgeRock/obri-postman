@@ -33487,6 +33487,7 @@
                 {
                   "listen": "prerequest",
                   "script": {
+                    "id": "58efc553-fa76-4baf-956c-8cbecf94262c",
                     "exec": [
                       "postman.setEnvironmentVariable('exp',(new Date().getTime() / 1000) + 60*5);",
                       ""
@@ -33497,6 +33498,7 @@
                 {
                   "listen": "test",
                   "script": {
+                    "id": "4c69d07d-8ae0-4043-839b-760524ec822d",
                     "exec": [
                       "postman.setEnvironmentVariable(\"client_credential_jwt\", responseBody);",
                       ""
@@ -33703,7 +33705,8 @@
                     },
                     {
                       "key": "refresh_token",
-                      "value": "{{refresh_token_with_consent}}",
+                      "value": "{{refresh_token}}",
+                      "description": "",
                       "type": "text"
                     }
                   ]
