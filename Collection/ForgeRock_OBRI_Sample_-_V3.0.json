@@ -33706,7 +33706,7 @@
                     },
                     {
                       "key": "refresh_token",
-                      "value": "{{refresh_token}}",
+                      "value": "{{refresh_token_with_consent}}",
                       "description": "",
                       "type": "text"
                     }
