@@ -1520,13 +1520,13 @@
               "listen": "test",
               "script": {
                 "id": "dd639e1e-2420-4dd1-96ef-e4a41456c4a6",
-                "type": "text/javascript",
                 "exec": [
                   "var data = JSON.parse(responseBody);",
                   "",
                   "postman.setEnvironmentVariable(\"software_statement_id\", data.id);",
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -1665,11 +1665,11 @@
               "listen": "test",
               "script": {
                 "id": "ebdec299-c1de-45be-a6e3-30aa7270b90a",
-                "type": "text/javascript",
                 "exec": [
                   "postman.setEnvironmentVariable(\"SSA_JWT\", responseBody);",
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -1677,7 +1677,7 @@
             "method": "POST",
             "header": [],
             "body": {},
-            "url": "{{DIRECTORY}}/api/software-statement/current/ssa"
+            "url": "{{DIRECTORY_MATLS}}/api/software-statement/current/ssa"
           },
           "response": [
             {
@@ -18408,7 +18408,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"Data\": {\n    \"Initiation\": {\n      \"InstructionIdentification\": \"ACME412\",\n      \"EndToEndIdentification\": \"FRESCO.21302.GFX.20\",\n      \"InstructedAmount\": {\n        \"Amount\": \"165.88\",\n        \"Currency\": \"GBP\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"ACME Inc\",\n        \"SecondaryIdentification\": \"0002\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"FRESCO-101\",\n        \"Unstructured\": \"Internal ops code 5120101\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"EcommerceGoods\",\n    \"MerchantCategoryCode\": \"5967\",\n    \"MerchantCustomerIdentification\": \"053598653254\",\n    \"DeliveryAddress\": {\n      \"AddressLine\": [\n        \"Flat 7\",\n        \"Acacia Lodge\"\n      ],\n      \"StreetName\": \"Acacia Avenue\",\n      \"BuildingNumber\": \"27\",\n      \"PostCode\": \"GU31 2ZZ\",\n      \"TownName\": \"Sparsholt\",\n      \"CountrySubDivision\": [\n        \"Wessex\"\n      ],\n      \"Country\": \"UK\"\n    }\n  }\n}"
+                              "raw": "{\n  \"Data\": {\n    \"Initiation\": {\n      \"InstructionIdentification\": \"ACME412\",\n      \"EndToEndIdentification\": \"FRESCO.21302.GFX.20\",\n      \"InstructedAmount\": {\n        \"Amount\": \"165.88\",\n        \"Currency\": \"GBP\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"ACME Inc\",\n        \"SecondaryIdentification\": \"0002\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"FRESCO-101\",\n        \"Unstructured\": \"Internal ops code 5120101\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"EcommerceGoods\",\n    \"MerchantCategoryCode\": \"5967\",\n    \"MerchantCustomerIdentification\": \"053598653254\",\n    \"DeliveryAddress\": {\n      \"AddressLine\": [\n        \"Flat 7\",\n        \"Acacia Lodge\"\n      ],\n      \"StreetName\": \"Acacia Avenue\",\n      \"BuildingNumber\": \"27\",\n      \"PostCode\": \"GU31 2ZZ\",\n      \"TownName\": \"Sparsholt\",\n      \"CountySubDivision\": [\n        \"Wessex\"\n      ],\n      \"Country\": \"UK\"\n    }\n  }\n}"
                             },
                             "url": "{{RS_CreateDomesticPaymentConsent_v3.0}}"
                           },
@@ -28035,6 +28035,7 @@
                                   "var data = JSON.parse(responseBody);",
                                   "",
                                   "postman.setEnvironmentVariable(\"access_token_with_consent\", data.access_token);",
+                                  "postman.setEnvironmentVariable(\"refresh_token_with_consent\", data.refresh_token);",
                                   "postman.setEnvironmentVariable(\"id_token\", data.id_token);"
                                 ],
                                 "type": "text/javascript"
