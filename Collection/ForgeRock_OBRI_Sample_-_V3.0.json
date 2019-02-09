@@ -6638,7 +6638,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetTransactions_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/transactions"
                   },
                   "response": [
                     {
@@ -6871,7 +6871,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetBalances_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/balances"
                   },
                   "response": [
                     {
