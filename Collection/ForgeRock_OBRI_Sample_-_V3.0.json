@@ -14361,7 +14361,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/scheduled-payments"
+                    "url": "{{RS}}/open-banking/v2.0/scheduled-payments"
                   },
                   "response": [
                     {
@@ -14626,7 +14626,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccounts_v1.1}}"
+                    "url": "{{RS}}/open-banking/v1.1/accounts"
                   },
                   "response": [
                     {
@@ -14845,7 +14845,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccount_v1.1}}"
+                    "url": "{{RS}}/open-banking/v1.1/accounts/{{AccountId}}"
                   },
                   "response": [
                     {
@@ -15078,7 +15078,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountBalances_v1.1}}"
+                    "url": "{{RS}}/open-banking/v1.1/accounts/{{AccountId}}/balances"
                   },
                   "response": [
                     {
