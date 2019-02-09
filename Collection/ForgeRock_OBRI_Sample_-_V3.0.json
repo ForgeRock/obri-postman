@@ -24744,7 +24744,7 @@
                               "mode": "raw",
                               "raw": "{\n  \"Data\": {\n  \t\"Permission\":\"Create\",\n    \"Initiation\": {\n      \"Frequency\": \"IntrvlMnthDay:01:15\",\n      \"Reference\": \"Rent\",\n      \"FirstPaymentDateTime\": \"2018-12-06T06:06:06+00:00\",\n      \"InstructedAmount\": {\n        \"Amount\": \"7.00\",\n        \"Currency\": \"EUR\"\n      },  \n      \"CurrencyOfTransfer\": \"EUR\", \n      \"FinalPaymentDateTime\": \"2020-11-20T06:06:06+00:00\",\n      \"DebtorAccount\": {\n        \"SchemeName\": \"SortCodeAccountNumber\",\n        \"Identification\": \"{{AccountIdentification}}\",\n        \"Name\": \"{{AccountName}}\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"Bob Clements\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
                             },
-                            "url": "{{RS_CreateInternationalStandingOrderConsent_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/international-standing-order-consents"
                           },
                           "response": []
                         },
