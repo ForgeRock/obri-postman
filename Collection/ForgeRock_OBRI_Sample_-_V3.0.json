@@ -7104,7 +7104,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetBeneficiaries_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/beneficiaries"
                   },
                   "response": [
                     {
