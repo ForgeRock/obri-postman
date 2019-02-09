@@ -15432,7 +15432,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetBeneficiaries_v1.1}}"
+                    "url": "{{RS}}/open-banking/v1.1/beneficiaries"
                   },
                   "response": [
                     {
@@ -15665,7 +15665,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetDirectDebits_v1.1}}"
+                    "url": "{{RS}}/open-banking/v1.1/beneficiaries"
                   },
                   "response": [
                     {
@@ -16068,7 +16068,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetProducts_v1.1}}"
+                    "url": "{{RS}}/open-banking/v1.1/products"
                   },
                   "response": [
                     {
