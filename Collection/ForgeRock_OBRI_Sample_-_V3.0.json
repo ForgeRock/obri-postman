@@ -1677,7 +1677,7 @@
             "method": "POST",
             "header": [],
             "body": {},
-            "url": "{{DIRECTORY_MATLS}}/api/software-statement/current/ssa"
+            "url": "{{DIRECTORY}}/api/software-statement/current/ssa"
           },
           "response": [
             {
@@ -2644,7 +2644,7 @@
                   "mode": "raw",
                   "raw": "{\n  \"Data\": {\n    \"Permissions\": [\n      \"ReadAccountsDetail\",\n      \"ReadBalances\",\n      \"ReadBeneficiariesDetail\",\n      \"ReadDirectDebits\",\n      \"ReadProducts\",\n      \"ReadStandingOrdersDetail\",\n      \"ReadTransactionsCredits\",\n      \"ReadTransactionsDebits\",\n      \"ReadTransactionsDetail\",\n      \"ReadOffers\",\n      \"ReadPAN\",\n      \"ReadParty\",\n      \"ReadPartyPSU\",\n      \"ReadScheduledPaymentsDetail\",\n      \"ReadStatementsDetail\"\n    ]\n  },\n  \"Risk\": {}\n}"
                 },
-                "url": "{{RS_CreateAccountAccessConsent_v3.0}}"
+                "url": "{{RS}}/open-banking/v3.0/account-access-consents"
               },
               "response": [
                 {
@@ -3376,7 +3376,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccounts_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts"
                   },
                   "response": [
                     {
@@ -3595,7 +3595,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccount_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}"
                   },
                   "response": [
                     {
@@ -3828,7 +3828,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountBalances_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/balances"
                   },
                   "response": [
                     {
@@ -4061,7 +4061,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountTransactions_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/transactions"
                   },
                   "response": [
                     {
@@ -4311,7 +4311,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountBeneficiaries_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/beneficiaries"
                   },
                   "response": [
                     {
@@ -4544,7 +4544,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountDirectDebits_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/direct-debits"
                   },
                   "response": [
                     {
@@ -4777,7 +4777,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountProduct_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/product"
                   },
                   "response": [
                     {
@@ -5010,7 +5010,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountStandingOrders_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/standing-orders"
                   },
                   "response": [
                     {
