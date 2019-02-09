@@ -24244,7 +24244,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetInternationalScheduledPayment_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/international-scheduled-payments/{{InternationalScheduledPaymentId}}"
                           },
                           "response": []
                         }
