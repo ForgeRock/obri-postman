@@ -8735,7 +8735,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetScheduledPayments_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/scheduled-payments"
                   },
                   "response": [
                     {
@@ -8936,12 +8936,12 @@
               "_postman_isSubFolder": true
             },
             {
-              "_postman_id": "c0d76f21-98b3-4438-9de5-d83481d049dc",
-              "name": "Account API V2.0",
+              "_postman_id": "58572318-3c93-4078-8345-84e8916bb39e",
+              "name": "Account API V3.0 Copy",
               "description": "",
               "item": [
                 {
-                  "_postman_id": "3f098db3-7cab-465d-8eda-93c5f9bdf8c6",
+                  "_postman_id": "a9f2894e-6ef0-407d-989d-61453dabb0ba",
                   "name": "Get accounts",
                   "event": [
                     {
@@ -8952,7 +8952,10 @@
                           "var data = JSON.parse(responseBody);",
                           "",
                           "postman.setEnvironmentVariable(\"AccountRequestId\", data.Data.AccountRequestId);",
-                          "postman.setEnvironmentVariable(\"AccountId\", data.Data.Account[0].AccountId);"
+                          "postman.setEnvironmentVariable(\"AccountId\", data.Data.Account[0].AccountId);",
+                          "postman.setEnvironmentVariable(\"AccountIdentification\", data.Data.Account[0].Account[0].Identification);",
+                          "postman.setEnvironmentVariable(\"AccountName\", data.Data.Account[0].Account[0].Name);",
+                          ""
                         ],
                         "type": "text/javascript"
                       }
@@ -8999,11 +9002,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccounts_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts"
                   },
                   "response": [
                     {
-                      "id": "86d46f24-e58e-4ff2-8c99-4ed5ae20eed4",
+                      "id": "b5938f9f-f722-4e97-914f-91dad2d77967",
                       "name": "Get accounts",
                       "originalRequest": {
                         "method": "GET",
@@ -9175,7 +9178,7 @@
                   ]
                 },
                 {
-                  "_postman_id": "660d82dd-655a-40be-b7a4-225abe3c9ef5",
+                  "_postman_id": "055897b3-2560-4d88-98b5-80f127bd8751",
                   "name": "Get account",
                   "request": {
                     "method": "GET",
@@ -9218,11 +9221,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccount_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}"
                   },
                   "response": [
                     {
-                      "id": "55092acb-fe6e-44f5-b600-201bfd7250d3",
+                      "id": "d37142e9-6797-4bd0-b782-69fa84de015c",
                       "name": "Get account",
                       "originalRequest": {
                         "method": "GET",
@@ -9394,13 +9397,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "e9d8de28-82ff-49f5-890b-5a2066dfeb43",
+                  "_postman_id": "987f5276-0af3-4113-ad3c-0d3a60626871",
                   "name": "Get account -> balances",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "fea1ab6d-927d-4620-bd08-8a623c7ab5c2",
+                        "id": "3f4bcff6-a8e0-442d-9b10-852cf093c6cf",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -9451,11 +9454,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountBalances_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/balances"
                   },
                   "response": [
                     {
-                      "id": "bf6e198b-dd36-465e-9c5f-e120649c60b8",
+                      "id": "c3a6e210-cdc7-4066-b558-a025b09b5bea",
                       "name": "Get balances",
                       "originalRequest": {
                         "method": "GET",
@@ -9627,13 +9630,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "ca4dc52b-16b6-4f18-9b07-96f7992e2661",
+                  "_postman_id": "b16db458-51cd-4db5-bb57-69644f01e780",
                   "name": "Get account -> transactions",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "57c27a51-0d48-4245-85cd-4e7117e57381",
+                        "id": "a568026d-b1aa-4a1b-b5fa-9268987353f1",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -9684,11 +9687,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountTransactions_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/transactions"
                   },
                   "response": [
                     {
-                      "id": "a328c58e-45e6-4c27-91df-bcea05a93c4e",
+                      "id": "52ce9cf5-91ca-4c4c-a8a5-586088969025",
                       "name": "Get transactions",
                       "originalRequest": {
                         "method": "GET",
@@ -9877,13 +9880,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "67da23b7-3fa7-4027-8e08-914cd590beb2",
+                  "_postman_id": "d27f8634-a614-48b9-9fbd-435f1335108a",
                   "name": "Get account -> beneficiaries",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "449d45eb-256f-4eb8-a987-929371508cbb",
+                        "id": "b4518d4d-cfbf-4f5d-9c72-597deb61f43d",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -9934,11 +9937,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountBeneficiaries_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/beneficiaries"
                   },
                   "response": [
                     {
-                      "id": "a23a68b4-8ae0-406a-b3e4-ea86d12b9db0",
+                      "id": "df5f1a6a-d525-42a8-9900-744ac8397008",
                       "name": "Get beneficiaries",
                       "originalRequest": {
                         "method": "GET",
@@ -10110,13 +10113,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "426fc4d6-6af6-4907-9d13-7c6f30ba2aee",
+                  "_postman_id": "41a07bab-ecb8-4b6b-9e15-fe908facc647",
                   "name": "Get account -> direct-debits",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "756c6b30-21c4-4482-95c7-e4015d5bd393",
+                        "id": "54c33346-63db-421b-8267-5d3a584d65fb",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -10167,11 +10170,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountDirectDebits_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/direct-debits"
                   },
                   "response": [
                     {
-                      "id": "73c3d4a8-92b1-48db-9867-cd70b024719a",
+                      "id": "71fd8011-b84e-481e-858e-90d1c59d111b",
                       "name": "Get direct-debits",
                       "originalRequest": {
                         "method": "GET",
@@ -10343,13 +10346,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "09bb95e8-6c92-4643-8d26-8b9138053d33",
+                  "_postman_id": "f47795c4-0dc9-49aa-936d-cc9973d9decb",
                   "name": "Get account -> product",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "f8f93d8b-539f-4d62-9f5e-275a2c291625",
+                        "id": "520186cc-b281-48c7-9e19-b640dc3c1662",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -10400,11 +10403,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountProduct_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/product"
                   },
                   "response": [
                     {
-                      "id": "037087c7-d438-4203-9ae8-121dbe903440",
+                      "id": "6d69e3ab-1010-4a5a-9ed1-ea790914b674",
                       "name": "Get product",
                       "originalRequest": {
                         "method": "GET",
@@ -10576,13 +10579,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "bc612aa1-3532-4185-b310-b48bc4abe029",
+                  "_postman_id": "3d9b0d04-cf77-4aa3-b65f-10b7a7c94ea5",
                   "name": "Get account -> standing-orders",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "efc92b8c-1824-4599-be80-d2fc7fdff2e6",
+                        "id": "4a656254-e2cd-4076-b624-c588ee61cf1d",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -10633,11 +10636,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountStandingOrders_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/standing-orders"
                   },
                   "response": [
                     {
-                      "id": "3e0bad57-144a-40a8-8b03-98713861b2d6",
+                      "id": "c589eec0-dfc0-4c37-93e0-7636cc0f7e23",
                       "name": "Get standing-orders",
                       "originalRequest": {
                         "method": "GET",
@@ -10809,13 +10812,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "61d5d4db-425c-48ee-a322-1da7c6115ed2",
+                  "_postman_id": "79457b71-67e4-4b3e-a9d0-8029cfefddaf",
                   "name": "Get account -> offers",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "530200b9-f774-4651-a20e-9b46d9da47c8",
+                        "id": "f37647ff-1b19-4236-b75d-7d6c9517b58b",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -10866,11 +10869,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountOffers_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/offers"
                   },
                   "response": [
                     {
-                      "id": "5e925946-7632-400d-9bb5-c82d1f465188",
+                      "id": "ab67d57d-1ceb-4ca4-a36e-396f2e899f05",
                       "name": "Get offers",
                       "originalRequest": {
                         "method": "GET",
@@ -11042,13 +11045,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "16f38b67-7832-44f5-86ef-c1ce214a9aaa",
+                  "_postman_id": "1874d4ea-8789-424d-969a-92744099af8b",
                   "name": "Get account -> party",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "07ecec15-fce5-4a8c-9f05-63951c8d17c3",
+                        "id": "896d487d-bfd6-4928-bce6-36b9e1048da7",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -11099,11 +11102,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountParty_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/party"
                   },
                   "response": [
                     {
-                      "id": "dc01eb71-7edf-4f52-ba95-0dd1ec87487d",
+                      "id": "8336d9aa-7c19-44f6-b43a-b0a3a198f873",
                       "name": "Get party",
                       "originalRequest": {
                         "method": "GET",
@@ -11275,13 +11278,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "c0526272-3241-4ce4-a80f-f11acc12269b",
+                  "_postman_id": "d986b47f-db93-464b-acce-9f2dcaa7f3eb",
                   "name": "Get account -> scheduled-payments",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "799e3a7b-8279-4777-bb85-10c81f1af00e",
+                        "id": "21018899-c4c2-4bcb-bd52-ead2d45a5332",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -11332,11 +11335,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountScheduledPayments_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/scheduled-payments"
                   },
                   "response": [
                     {
-                      "id": "f74e99fc-125d-403f-b64b-7492f3df10d9",
+                      "id": "e5a8c59a-d171-4902-bef0-5269f2f245ad",
                       "name": "Get scheduled-payments",
                       "originalRequest": {
                         "method": "GET",
@@ -11508,19 +11511,19 @@
                   ]
                 },
                 {
-                  "_postman_id": "b1c081f2-8e47-46c3-8131-c79027b49444",
+                  "_postman_id": "26d2da5c-8ead-4d53-ab64-7d76615817e1",
                   "name": "Get account -> statements",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
                         "id": "f42c28e4-8993-4ba9-bca9-bd7693bd973e",
-                        "type": "text/javascript",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
                           "postman.setEnvironmentVariable(\"StatementId\", data.Data.Statement[0].StatementId);"
-                        ]
+                        ],
+                        "type": "text/javascript"
                       }
                     }
                   ],
@@ -11557,10 +11560,6 @@
                         "value": "104.25.212.99"
                       },
                       {
-                        "key": "x-fapi-interaction-id",
-                        "value": "93bac548-d2de-4546-b106-880a5018460d"
-                      },
-                      {
                         "key": "Accept",
                         "value": "application/json"
                       }
@@ -11569,11 +11568,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountStatements_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/statements"
                   },
                   "response": [
                     {
-                      "id": "1eacd565-fe11-4e5d-bb22-5c75e76a478f",
+                      "id": "48c35364-b28d-4ac2-9dcd-5d9e852fac60",
                       "name": "Get statements",
                       "originalRequest": {
                         "method": "GET",
@@ -11745,7 +11744,7 @@
                   ]
                 },
                 {
-                  "_postman_id": "1ce49c65-c665-4f09-92bc-a04edb999767",
+                  "_postman_id": "ad45a691-7207-47e6-9b07-c773ad957ce1",
                   "name": "Get account ->  statement",
                   "event": [
                     {
@@ -11801,11 +11800,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountStatement_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/statements/{{StatementId}}"
                   },
                   "response": [
                     {
-                      "id": "6203b7cd-238f-415d-b876-917aa9366e6e",
+                      "id": "2a7e15c4-dd37-4834-85e7-288b9c5b81b2",
                       "name": "Get statement",
                       "originalRequest": {
                         "method": "GET",
@@ -11977,7 +11976,7 @@
                   ]
                 },
                 {
-                  "_postman_id": "5c22a43f-4267-4258-b595-5a02b0016dfb",
+                  "_postman_id": "00bafe6c-b939-42c7-9fb2-eaa8387b8985",
                   "name": "Get account -> Statement -> Transactions",
                   "event": [
                     {
@@ -12032,11 +12031,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountStatementTransactions_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/statements/{{StatementId}}/transactions"
                   },
                   "response": [
                     {
-                      "id": "4602cec9-2a71-4905-941c-ee5520bad4bd",
+                      "id": "6a31e2ea-3326-4fd9-845c-8967a2693702",
                       "name": "Get Statement Transactions",
                       "originalRequest": {
                         "method": "GET",
@@ -12208,13 +12207,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "ae650dac-f56f-451e-b8bd-cb1653643fe8",
+                  "_postman_id": "1149c18d-afed-4cae-b2e8-d36cfa854213",
                   "name": "Get transactions",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "b5a317c2-c7af-4d11-b82f-85bc7a2d93cf",
+                        "id": "f3e9ec4e-59da-456e-9a14-d8be0a8da33e",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -12258,19 +12257,18 @@
                       },
                       {
                         "key": "Accept",
-                        "value": "application/json",
-                        "type": "text"
+                        "value": "application/json"
                       }
                     ],
                     "body": {
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetTransactions_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/transactions"
                   },
                   "response": [
                     {
-                      "id": "d5f9393a-13a9-49cc-98b7-aa39ba018bba",
+                      "id": "e1663801-681e-4fc5-8ea2-e954f442d780",
                       "name": "Get transactions",
                       "originalRequest": {
                         "method": "GET",
@@ -12442,13 +12440,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "e929b51c-6281-4552-b467-975e46790d09",
+                  "_postman_id": "f6722712-d4b2-48f6-a9d5-268fbf48d396",
                   "name": "Get balances",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "1037d831-5cb3-4512-9b7b-86419ced297b",
+                        "id": "d7a84349-fc1d-431c-a1ff-95d8dfd0b552",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -12499,11 +12497,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetBalances_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/balances"
                   },
                   "response": [
                     {
-                      "id": "5101319b-5d04-4465-ab66-1a19b49f8c30",
+                      "id": "47dde4da-c259-48d4-b433-ec2bb79cced5",
                       "name": "Get balances",
                       "originalRequest": {
                         "method": "GET",
@@ -12675,13 +12673,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "fbe6c929-9cad-44eb-8b6e-66042d6387e5",
+                  "_postman_id": "8f3317b2-19f6-4a18-b077-4035080f03db",
                   "name": "Get beneficiaries",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "3abe7c82-90ee-4ec0-ad42-ad0a89083436",
+                        "id": "1b0d37d4-46cb-49af-adc0-8980d819f7ae",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -12732,11 +12730,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetBeneficiaries_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/beneficiaries"
                   },
                   "response": [
                     {
-                      "id": "4d137a28-615a-45fe-90ea-61dc423c7d05",
+                      "id": "f7104cea-7d4e-4099-9c1b-cce457546320",
                       "name": "Get beneficiaries",
                       "originalRequest": {
                         "method": "GET",
@@ -12908,13 +12906,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "28c5374a-2a13-47e6-9b5c-dedcae01582c",
+                  "_postman_id": "a4d7e04d-6cf6-45ef-8e49-6d77e4f2c132",
                   "name": "Get direct-debits",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "eab7c9ab-988c-4b2f-a3fe-519c8e8b9ff7",
+                        "id": "548f6a6a-1256-46b0-8c9f-2cf2872f4169",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -12965,11 +12963,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetDirectDebits_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/direct-debits"
                   },
                   "response": [
                     {
-                      "id": "dd2b101b-c453-4a03-aced-ba2628b80689",
+                      "id": "03ec5b65-01da-4da5-bbe5-7323dac0feec",
                       "name": "Get direct-debits",
                       "originalRequest": {
                         "method": "GET",
@@ -13141,13 +13139,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "75a91088-542c-4f04-b116-8d73048e6725",
+                  "_postman_id": "67eae92b-aee4-4879-8d7d-8299bc64c775",
                   "name": "Get products",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "1b86962f-489d-4826-8481-ecf8cdee1fdc",
+                        "id": "6421b272-4e18-4a9f-a3c5-b735efdfbf9f",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -13198,11 +13196,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetProducts_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/products"
                   },
                   "response": [
                     {
-                      "id": "9bdc36b9-d12a-452f-b201-d6a0dbd0f955",
+                      "id": "9b2c4398-087b-4805-ba4d-444ca1ada9f9",
                       "name": "Get products",
                       "originalRequest": {
                         "method": "GET",
@@ -13374,13 +13372,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "93119a88-dd89-4246-a30c-7d7dfb25a86f",
+                  "_postman_id": "d038b945-a92a-4798-a14f-6dd4707b433e",
                   "name": "Get standing-orders",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "46ad62b1-e5fd-4a05-9fb9-5183570aacce",
+                        "id": "2e597e0b-5253-4eda-9bf5-f0e4c1c19d74",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -13431,11 +13429,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetStandingOrders_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/standing-orders"
                   },
                   "response": [
                     {
-                      "id": "643a521c-5f93-4885-8acc-c780eb066cb7",
+                      "id": "d78d952d-d695-43b8-830b-12016d30ef8b",
                       "name": "Get standing-orders",
                       "originalRequest": {
                         "method": "GET",
@@ -13607,13 +13605,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "39afb21f-4158-47f6-a05f-6d8c19d5af1f",
+                  "_postman_id": "0d6ea963-5cd1-4765-b819-52e29f38983b",
                   "name": "Get offers",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "25e232be-1cb7-4727-b93a-393a4c16320b",
+                        "id": "04e2c140-2d5b-4615-91f9-7792896b568b",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -13664,11 +13662,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetOffers_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/offers"
                   },
                   "response": [
                     {
-                      "id": "33acaafd-053d-4fd3-bc8a-511f38e057d1",
+                      "id": "764e8638-e16f-46cd-835c-65ef59cb8327",
                       "name": "Get offers",
                       "originalRequest": {
                         "method": "GET",
@@ -13840,13 +13838,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "2d4f6de7-9f20-4582-959a-e13770309b0c",
+                  "_postman_id": "a34557dd-5c8e-4234-a670-9c6f1e1f6f98",
                   "name": "Get party",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "9b487ab7-0858-486b-b1b2-dbe5f09423fe",
+                        "id": "707e6266-50a7-453c-baa0-cd86e27f8d2e",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -13897,11 +13895,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetParty_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/party"
                   },
                   "response": [
                     {
-                      "id": "47df50dd-220b-4ff3-bf5d-82a899e088d8",
+                      "id": "c281d6fb-f7cd-4bbc-bbb2-d5fd310fb083",
                       "name": "Get party",
                       "originalRequest": {
                         "method": "GET",
@@ -14073,13 +14071,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "ddad3f2e-9b2c-4056-81f2-7127b5e9681d",
+                  "_postman_id": "4217fb52-0488-4ef9-a999-2b066cbe9241",
                   "name": "Get statements",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "6764a5c1-8d72-4d41-8172-9d8153ac8128",
+                        "id": "09842a34-d97a-4b9b-a744-8fa3de4d3120",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -14130,11 +14128,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetStatement_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/statements"
                   },
                   "response": [
                     {
-                      "id": "fea9c27b-eef1-4261-82b3-2e7b10ed5156",
+                      "id": "8081291b-0e41-45a5-a548-73ed6d8ad983",
                       "name": "Get statements",
                       "originalRequest": {
                         "method": "GET",
@@ -14306,13 +14304,13 @@
                   ]
                 },
                 {
-                  "_postman_id": "10f78902-b5c2-4058-a46d-30087ef1b4e8",
+                  "_postman_id": "e5cef674-cc36-4485-9d71-1ded64ab4140",
                   "name": "Get scheduled-payments",
                   "event": [
                     {
                       "listen": "test",
                       "script": {
-                        "id": "61464575-d0b4-4afd-a99e-1331642effd6",
+                        "id": "71c916df-9cdb-491b-b6dc-52feab59603b",
                         "exec": [
                           "var data = JSON.parse(responseBody);",
                           "",
@@ -14363,11 +14361,11 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetScheduledPayments_v2.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/scheduled-payments"
                   },
                   "response": [
                     {
-                      "id": "e45a7ac6-5fab-4709-a60f-07a0b253b083",
+                      "id": "e89cf267-ef58-4b89-aa6c-bab730cfd9b5",
                       "name": "Get scheduled-payments",
                       "originalRequest": {
                         "method": "GET",
