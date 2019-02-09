@@ -23555,7 +23555,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetInternationalScheduledPaymentConsent_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/international-scheduled-payment-consents/{{ConsentId}}"
                           },
                           "response": []
                         }
@@ -24173,7 +24173,7 @@
                               "mode": "raw",
                               "raw": "{\n  \"Data\": {\n  \t\"Permission\":\"Create\",\n    \"ConsentId\": \"{{ConsentId}}\",\n     \"Initiation\": {\n      \"InstructionIdentification\": \"ACME412\",\n      \"EndToEndIdentification\": \"FRESCO.21302.GFX.20\",\n      \"RequestedExecutionDateTime\": \"2018-08-06T00:00:00+00:00\",\n      \"CurrencyOfTransfer\":\"USD\",\n      \"InstructedAmount\": {\n        \"Amount\": \"165.88\",\n        \"Currency\": \"GBP\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"ACME Inc\",\n        \"SecondaryIdentification\": \"0002\"\n      },\n        \"DebtorAccount\": {\n        \"SchemeName\": \"SortCodeAccountNumber\",\n        \"Identification\": \"{{AccountIdentification}}\",\n        \"Name\": \"{{AccountName}}\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"FRESCO-101\",\n        \"Unstructured\": \"Internal ops code 5120101\"\n      },\n      \"ExchangeRateInformation\": {\n        \"UnitCurrency\": \"GBP\",\n        \"ExchangeRate\": 1.5,\n        \"RateType\": \"Actual\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
                             },
-                            "url": "{{RS_CreateInternationalScheduledPayment_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/international-scheduled-payments"
                           },
                           "response": []
                         },
