@@ -16301,7 +16301,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetStandingOrders_v1.1}}"
+                    "url": "{{RS}}/open-banking/v1.1/standing-orders"
                   },
                   "response": [
                     {
