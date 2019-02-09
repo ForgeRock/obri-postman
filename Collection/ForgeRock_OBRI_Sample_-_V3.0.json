@@ -25491,7 +25491,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetInternationalStandingOrder_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/international-standing-orders/{{InternationalStandingOrderId}}"
                           },
                           "response": []
                         }
