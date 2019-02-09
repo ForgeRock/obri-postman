@@ -10636,7 +10636,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/standing-orders"
+                    "url": "{{RS}}/open-banking/v2.0/accounts/{{AccountId}}/standing-orders"
                   },
                   "response": [
                     {
@@ -10869,7 +10869,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/offers"
+                    "url": "{{RS}}/open-banking/v2.0/accounts/{{AccountId}}/offers"
                   },
                   "response": [
                     {
@@ -11102,7 +11102,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/party"
+                    "url": "{{RS}}/open-banking/v2.0/accounts/{{AccountId}}/party"
                   },
                   "response": [
                     {
@@ -11335,7 +11335,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/scheduled-payments"
+                    "url": "{{RS}}/open-banking/v2.0/accounts/{{AccountId}}/scheduled-payments"
                   },
                   "response": [
                     {
@@ -11568,7 +11568,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/statements"
+                    "url": "{{RS}}/open-banking/v2.0/accounts/{{AccountId}}/statements"
                   },
                   "response": [
                     {
@@ -11800,7 +11800,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/statements/{{StatementId}}"
+                    "url": "{{RS}}/open-banking/v2.0/accounts/{{AccountId}}/statements/{{StatementId}}"
                   },
                   "response": [
                     {
@@ -12031,7 +12031,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/statements/{{StatementId}}/transactions"
+                    "url": "{{RS}}/open-banking/v2.0/accounts/{{AccountId}}/statements/{{StatementId}}/transactions"
                   },
                   "response": [
                     {
@@ -12264,7 +12264,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/transactions"
+                    "url": "{{RS}}/open-banking/v2.0/transactions"
                   },
                   "response": [
                     {
@@ -12497,7 +12497,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/balances"
+                    "url": "{{RS}}/open-banking/v2.0/balances"
                   },
                   "response": [
                     {
@@ -12730,7 +12730,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/beneficiaries"
+                    "url": "{{RS}}/open-banking/v2.0/beneficiaries"
                   },
                   "response": [
                     {
