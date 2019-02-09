@@ -8036,7 +8036,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetOffers_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/offers"
                   },
                   "response": [
                     {
@@ -8269,7 +8269,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetParty_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/party"
                   },
                   "response": [
                     {
@@ -8502,7 +8502,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetStatement_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/statements"
                   },
                   "response": [
                     {
