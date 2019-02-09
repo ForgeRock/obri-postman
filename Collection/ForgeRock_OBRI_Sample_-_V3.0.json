@@ -5476,7 +5476,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountParty_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/party"
                   },
                   "response": [
                     {
@@ -5709,7 +5709,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountScheduledPayments_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/scheduled-payments"
                   },
                   "response": [
                     {
@@ -5942,7 +5942,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountStatements_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/statements"
                   },
                   "response": [
                     {
@@ -6174,7 +6174,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountStatement_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/statements/{{StatementId}}"
                   },
                   "response": [
                     {
