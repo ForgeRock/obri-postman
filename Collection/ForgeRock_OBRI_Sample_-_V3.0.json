@@ -5243,7 +5243,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountOffers_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/offers"
                   },
                   "response": [
                     {
