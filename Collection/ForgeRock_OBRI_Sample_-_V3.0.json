@@ -19736,7 +19736,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetDomesticScheduledPaymentConsent_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/domestic-scheduled-payment-consents/{{ConsentId}}"
                           },
                           "response": []
                         }
@@ -20354,7 +20354,7 @@
                               "mode": "raw",
                               "raw": "{\n  \"Data\": {\n    \"ConsentId\": \"{{ConsentId}}\",\n    \"Permission\":\"Create\",\n    \"Initiation\": {\n      \"RequestedExecutionDateTime\": \"2019-11-02T00:00:00+00:00\",\n      \"InstructedAmount\": {\n        \"Amount\": \"200.00\",\n        \"Currency\": \"GBP\"\n      },\n      \"DebtorAccount\": {\n        \"SchemeName\": \"SortCodeAccountNumber\",\n        \"Identification\": \"{{AccountIdentification}}\",\n        \"Name\": \"{{AccountName}}\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"Tom Kirkman\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"DSR-037\",\n        \"Unstructured\": \"Internal ops code 5120103\"\n      },\n      \"InstructionIdentification\": \"2876d876876\",\n      \"EndToEndIdentification\": \"4535353535\"\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
                             },
-                            "url": "{{RS_CreateDomesticScheduledPayment_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/domestic-scheduled-payments"
                           },
                           "response": []
                         },
@@ -20425,7 +20425,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetDomesticScheduledPayment_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/domestic-scheduled-payments/{{DomesticScheduledPaymentId}}"
                           },
                           "response": []
                         }
@@ -20924,7 +20924,7 @@
                               "mode": "raw",
                               "raw": "{\n  \"Data\": {\n  \t\"Permission\":\"Create\",\n    \"Initiation\": {\n      \"Frequency\": \"IntrvlMnthDay:01:15\",\n      \"Reference\": \"Pocket money for Damien\",\n      \"FirstPaymentDateTime\": \"2018-12-06T06:06:06+00:00\",\n      \"FirstPaymentAmount\": {\n        \"Amount\": \"6.66\",\n        \"Currency\": \"GBP\"\n      },     \n      \"RecurringPaymentAmount\": {\n        \"Amount\": \"7.00\",\n        \"Currency\": \"GBP\"\n      },    \n      \"FinalPaymentDateTime\": \"2020-11-20T06:06:06+00:00\",\n      \"FinalPaymentAmount\": {\n        \"Amount\": \"7.00\",\n        \"Currency\": \"GBP\"\n      },\n      \"DebtorAccount\": {\n        \"SchemeName\": \"SortCodeAccountNumber\",\n        \"Identification\": \"{{AccountIdentification}}\",\n        \"Name\": \"{{AccountName}}\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"Bob Clements\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
                             },
-                            "url": "{{RS_CreateDomesticStandingOrderConsent_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/domestic-standing-order-consents"
                           },
                           "response": []
                         },
@@ -20999,7 +20999,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetDomesticStandingOrderConsent_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/domestic-standing-order-consents/{{ConsentId}}"
                           },
                           "response": []
                         }
@@ -21617,7 +21617,7 @@
                               "mode": "raw",
                               "raw": "{\n  \"Data\": {\n    \"ConsentId\": \"{{ConsentId}}\",\n    \"Initiation\": {\n      \"Frequency\": \"IntrvlMnthDay:01:15\",\n      \"Reference\": \"Pocket money for Damien\",\n      \"FirstPaymentDateTime\": \"2018-12-06T06:06:06+00:00\",\n      \"FirstPaymentAmount\": {\n        \"Amount\": \"6.66\",\n        \"Currency\": \"GBP\"\n      },     \n      \"RecurringPaymentAmount\": {\n        \"Amount\": \"7.00\",\n        \"Currency\": \"GBP\"\n      },    \n      \"FinalPaymentDateTime\": \"2020-11-20T06:06:06+00:00\",\n      \"FinalPaymentAmount\": {\n        \"Amount\": \"7.00\",\n        \"Currency\": \"GBP\"\n      },\n      \"DebtorAccount\": {\n        \"SchemeName\": \"SortCodeAccountNumber\",\n        \"Identification\": \"{{AccountIdentification}}\",\n        \"Name\": \"{{AccountName}}\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"Bob Clements\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
                             },
-                            "url": "{{RS_CreateDomesticStandingOrder_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/domestic-standing-orders"
                           },
                           "response": []
                         },
@@ -21688,7 +21688,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetDomesticStandingOrder_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/domestic-standing-orders/{{DomesticStandingOrderId}}"
                           },
                           "response": []
                         }
@@ -22217,7 +22217,7 @@
                               "mode": "raw",
                               "raw": "{\n  \"Data\": {\n    \"Initiation\": {\n      \"InstructionIdentification\": \"ACME412\",\n      \"EndToEndIdentification\": \"FRESCO.21302.GFX.20\",\n      \"InstructionPriority\": \"Normal\",\n      \"CurrencyOfTransfer\":\"USD\",\n      \"InstructedAmount\": {\n        \"Amount\": \"165.88\",\n        \"Currency\": \"GBP\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"ACME Inc\",\n        \"SecondaryIdentification\": \"0002\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"FRESCO-101\",\n        \"Unstructured\": \"Internal ops code 5120101\"\n      },\n      \"ExchangeRateInformation\": {\n        \"UnitCurrency\": \"GBP\",\n        \"RateType\": \"Actual\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
                             },
-                            "url": "{{RS_CreateInternationalPaymentConsent_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/international-payment-consents"
                           },
                           "response": []
                         },
@@ -22292,7 +22292,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetInternationalPaymentConsent_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/international-payment-consents/{{ConsentId}}"
                           },
                           "response": []
                         }
@@ -22910,7 +22910,7 @@
                               "mode": "raw",
                               "raw": "{\n  \"Data\": {\n    \"ConsentId\": \"{{ConsentId}}\",\n     \"Initiation\": {\n      \"InstructionIdentification\": \"ACME412\",\n      \"EndToEndIdentification\": \"FRESCO.21302.GFX.20\",\n      \"InstructionPriority\": \"Normal\",\n      \"CurrencyOfTransfer\":\"USD\",\n      \"InstructedAmount\": {\n        \"Amount\": \"165.88\",\n        \"Currency\": \"GBP\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"ACME Inc\",\n        \"SecondaryIdentification\": \"0002\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"FRESCO-101\",\n        \"Unstructured\": \"Internal ops code 5120101\"\n      },\n      \"ExchangeRateInformation\": {\n        \"UnitCurrency\": \"GBP\",\n        \"ExchangeRate\": 1.5,\n        \"RateType\": \"Actual\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
                             },
-                            "url": "{{RS_CreateInternationalPayment_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/international-payments"
                           },
                           "response": []
                         },
@@ -22981,7 +22981,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetInternationalPayment_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/international-payments/{{InternationalPaymentId}}"
                           },
                           "response": []
                         }
@@ -23480,7 +23480,7 @@
                               "mode": "raw",
                               "raw": "{\n  \"Data\": {\n  \t\"Permission\":\"Create\",\n    \"Initiation\": {\n      \"InstructionIdentification\": \"ACME412\",\n      \"EndToEndIdentification\": \"FRESCO.21302.GFX.20\",\n      \"RequestedExecutionDateTime\": \"2018-08-06T00:00:00+00:00\",\n      \"CurrencyOfTransfer\":\"USD\",\n      \"InstructedAmount\": {\n        \"Amount\": \"165.88\",\n        \"Currency\": \"GBP\"\n      },\n       \"DebtorAccount\": {\n        \"SchemeName\": \"SortCodeAccountNumber\",\n        \"Identification\": \"{{AccountIdentification}}\",\n        \"Name\": \"{{AccountName}}\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"ACME Inc\",\n        \"SecondaryIdentification\": \"0002\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"FRESCO-101\",\n        \"Unstructured\": \"Internal ops code 5120101\"\n      },\n      \"ExchangeRateInformation\": {\n        \"UnitCurrency\": \"GBP\",\n        \"RateType\": \"Actual\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
                             },
-                            "url": "{{RS_CreateInternationalScheduledPaymentConsent_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/international-scheduled-payment-consents"
                           },
                           "response": []
                         },
