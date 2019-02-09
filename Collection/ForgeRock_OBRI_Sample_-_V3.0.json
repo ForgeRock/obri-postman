@@ -7337,7 +7337,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetDirectDebits_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/direct-debits"
                   },
                   "response": [
                     {
@@ -7570,7 +7570,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetProducts_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/products"
                   },
                   "response": [
                     {
@@ -7803,7 +7803,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetStandingOrders_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/standing-orders"
                   },
                   "response": [
                     {
