@@ -19172,7 +19172,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetDomesticPayment_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/domestic-payments/{{DomesticPaymentId}}"
                           },
                           "response": []
                         }
@@ -19661,7 +19661,7 @@
                               "mode": "raw",
                               "raw": "{\n  \"Data\": {\n    \"Permission\":\"Create\",\n    \"Initiation\": {\n      \"RequestedExecutionDateTime\": \"2019-11-02T00:00:00+00:00\",\n      \"InstructedAmount\": {\n        \"Amount\": \"200.00\",\n        \"Currency\": \"GBP\"\n      },\n      \"DebtorAccount\": {\n        \"SchemeName\": \"SortCodeAccountNumber\",\n        \"Identification\": \"{{AccountIdentification}}\",\n        \"Name\": \"{{AccountName}}\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"Tom Kirkman\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"DSR-037\",\n        \"Unstructured\": \"Internal ops code 5120103\"\n      },\n      \"InstructionIdentification\": \"2876d876876\",\n      \"EndToEndIdentification\": \"4535353535\"\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
                             },
-                            "url": "{{RS_CreateDomesticScheduledPaymentConsent_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/domestic-scheduled-payment-consents"
                           },
                           "response": []
                         },
