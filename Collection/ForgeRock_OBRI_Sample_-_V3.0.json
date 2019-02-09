@@ -6405,7 +6405,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetAccountStatementTransactions_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/accounts/{{AccountId}}/statements/{{StatementId}}/transactions"
                   },
                   "response": [
                     {
