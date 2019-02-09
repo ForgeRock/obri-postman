@@ -661,7 +661,7 @@
                   "mode": "raw",
                   "raw": ""
                 },
-                "url": "{{RS_WITH_PORT}}/mtlsTest",
+                "url": "{{RS}}:443/mtlsTest",
                 "description": "Due to postman bug https://github.com/postmanlabs/postman-app-support/issues/4707 \nwe need to setup the RS domain twice to workaround it.\nThis request is here to help you testing you did setup the certs for the RS for both with and without port 443."
               },
               "response": [
@@ -1084,64 +1084,6 @@
                       "    pm.expect(data.Data.PaymentInitiationAPI).to.not.be.null;",
                       "    pm.expect(data.Data.AccountAndTransactionAPI).to.not.be.null;",
                       "});",
-                      "",
-                      "",
-                      "data.Data.PaymentInitiationAPI.forEach(function(entry) {",
-                      "    Object.keys(entry.Links).forEach(function(endpointRef) {",
-                      "        postman.setEnvironmentVariable(\"RS_\" + endpointRef + \"_\" + entry.Version + \"_REF\", ",
-                      "        entry.Links[endpointRef]",
-                      "        );",
-                      "        postman.setEnvironmentVariable(\"RS_\" + endpointRef + \"_\" + entry.Version, ",
-                      "        entry.Links[endpointRef]",
-                      "            .replace(\"{PaymentId}\", \"{{PaymentId}}\")",
-                      "            .replace(\"{PaymentSubmissionId}\", \"{{PaymentSubmissionId}}\")",
-                      "            .replace(\"{ConsentId}\", \"{{ConsentId}}\")",
-                      "            .replace(\"{DomesticPaymentId}\", \"{{DomesticPaymentId}}\")",
-                      "            .replace(\"{DomesticScheduledPaymentId}\", \"{{DomesticScheduledPaymentId}}\")",
-                      "            .replace(\"{DomesticStandingOrderId}\", \"{{DomesticStandingOrderId}}\")",
-                      "            .replace(\"{InternationalPaymentId}\", \"{{InternationalPaymentId}}\")",
-                      "            .replace(\"{InternationalScheduledPaymentId}\", \"{{InternationalScheduledPaymentId}}\")",
-                      "            .replace(\"{InternationalStandingOrderId}\", \"{{InternationalStandingOrderId}}\")",
-                      "            .replace(\"{FilePaymentId}\", \"{{FilePaymentId}}\")",
-                      "        );",
-                      "    });",
-                      "});",
-                      "",
-                      "data.Data.AccountAndTransactionAPI.forEach(function(entry) {",
-                      " Object.keys(entry.Links).forEach(function(endpointRef) {",
-                      "              postman.setEnvironmentVariable(\"RS_\" + endpointRef + \"_\" + entry.Version + \"_REF\", ",
-                      "        entry.Links[endpointRef]",
-                      "        );",
-                      "        postman.setEnvironmentVariable(\"RS_\" + endpointRef + \"_\" + entry.Version, ",
-                      "        entry.Links[endpointRef]",
-                      "            .replace(\"{AccountRequestId}\", \"{{AccountRequestId}}\")",
-                      "            .replace(\"{AccountId}\", \"{{AccountId}}\")",
-                      "            .replace(\"{StatementId}\", \"{{StatementId}}\")",
-                      "            .replace(\"{ConsentId}\", \"{{ConsentId}}\")",
-                      "        );",
-                      "    })",
-                      "});",
-                      "",
-                      "data.Data.EventNotificationAPI.forEach(function(entry) {",
-                      "    Object.keys(entry.Links).forEach(function(endpointRef) {",
-                      "        postman.setEnvironmentVariable(\"RS_\" + endpointRef + \"_\" + entry.Version + \"_REF\", ",
-                      "            entry.Links[endpointRef]",
-                      "        );",
-                      "        postman.setEnvironmentVariable(\"RS_\" + endpointRef + \"_\" + entry.Version, ",
-                      "        entry.Links[endpointRef]",
-                      "            .replace(\"{CallbackUrlId}\", \"{{CallbackUrlId}}\")",
-                      "        );",
-                      "    });",
-                      "});",
-                      "",
-                      "data.Data.FundsConfirmationAPI.forEach(function(entry) {",
-                      "    Object.keys(entry.Links).forEach(function(endpointRef) {",
-                      "        postman.setEnvironmentVariable(\"RS_\" + endpointRef + \"_\" + entry.Version, ",
-                      "        entry.Links[endpointRef]",
-                      "            .replace(\"{ConsentId}\", \"{{ConsentId}}\")",
-                      "        );",
-                      "    });",
-                      "});",
                       ""
                     ],
                     "type": "text/javascript"
@@ -1155,7 +1097,7 @@
                   "mode": "raw",
                   "raw": ""
                 },
-                "url": "{{RS}}/discovery",
+                "url": "{{RS}}/open-banking/discovery",
                 "description": "Call the RS discovery endpoints. This will load all the OB endpoints into your postman environment"
               },
               "response": [
@@ -21719,6 +21661,1247 @@
                     }
                   ],
                   "_postman_isSubFolder": true
+                },
+                {
+                  "_postman_id": "fbd3988f-ac79-4224-a3ad-02df00915367",
+                  "name": "Domestic single payment Copy",
+                  "description": "",
+                  "item": [
+                    {
+                      "_postman_id": "61f8a325-c600-4494-af1d-2a0c3edd4a7d",
+                      "name": "Payment preparation",
+                      "description": "",
+                      "item": [
+                        {
+                          "_postman_id": "ba28cfd1-3fe4-4b08-816f-d7b0b3860833",
+                          "name": "Generate client credential JWT",
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "id": "0b9a5009-7d09-4ec7-81fc-156730a0fc9e",
+                                "exec": [
+                                  "postman.setEnvironmentVariable('exp',(new Date().getTime() / 1000) + 60*5);",
+                                  ""
+                                ],
+                                "type": "text/javascript"
+                              }
+                            },
+                            {
+                              "listen": "test",
+                              "script": {
+                                "id": "254bebd2-cd43-471a-8c2c-f4c989b41e81",
+                                "exec": [
+                                  "pm.test(\"response must be valid and have a body\", function () {",
+                                  "     pm.response.to.be.ok;",
+                                  "     pm.response.to.be.withBody;",
+                                  "});",
+                                  "",
+                                  "postman.setEnvironmentVariable(\"client_credential_jwt\", responseBody);",
+                                  ""
+                                ],
+                                "type": "text/javascript"
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "issuerId",
+                                "value": "{{CLIENT_ID}}"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"sub\": \"{{CLIENT_ID}}\",\n  \"exp\": {{exp}},\n  \"aud\": \"{{AS_ISSUER_ID}}\"\n}\n"
+                            },
+                            "url": "{{JWKMS}}/api/crypto/signClaims"
+                          },
+                          "response": [
+                            {
+                              "id": "4a1180a9-0bfe-45d3-ad29-d4e38ec05da2",
+                              "name": "Generate client credential JWT",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "disabled": false
+                                  },
+                                  {
+                                    "key": "issuerId",
+                                    "value": "{{CLIENT_ID}}",
+                                    "disabled": false
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"sub\": \"{{CLIENT_ID}}\",\n  \"exp\": {{exp}},\n  \"aud\": \"{{AS_ISSUER_ID}}\"\n}\n"
+                                },
+                                "url": "{{JWKMS}}/api/crypto/signClaims"
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "plain",
+                              "header": [
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-cache, no-store, max-age=0, must-revalidate",
+                                  "name": "Cache-Control",
+                                  "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                                },
+                                {
+                                  "key": "Content-Length",
+                                  "value": "754",
+                                  "name": "Content-Length",
+                                  "description": "The length of the response body in octets (8-bit bytes)"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain;charset=UTF-8",
+                                  "name": "Content-Type",
+                                  "description": "The mime type of this content"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 31 Aug 2018 23:36:18 GMT",
+                                  "name": "Date",
+                                  "description": "The date and time that the message was sent"
+                                },
+                                {
+                                  "key": "Expires",
+                                  "value": "0",
+                                  "name": "Expires",
+                                  "description": "Gives the date/time after which the response is considered stale"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache",
+                                  "name": "Pragma",
+                                  "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+                                },
+                                {
+                                  "key": "Strict-Transport-Security",
+                                  "value": "max-age=31536000 ; includeSubDomains",
+                                  "name": "Strict-Transport-Security",
+                                  "description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff",
+                                  "name": "X-Content-Type-Options",
+                                  "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY",
+                                  "name": "X-Frame-Options",
+                                  "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+                                },
+                                {
+                                  "key": "X-XSS-Protection",
+                                  "value": "1; mode=block",
+                                  "name": "X-XSS-Protection",
+                                  "description": "Cross-site scripting (XSS) filter"
+                                },
+                                {
+                                  "key": "x-fapi-interaction-id",
+                                  "value": "363428fd-fc40-46a2-9c94-8a0fa0ce689c",
+                                  "name": "x-fapi-interaction-id",
+                                  "description": "Custom header"
+                                }
+                              ],
+                              "cookie": [
+                                {
+                                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                                  "httpOnly": false,
+                                  "domain": "ob.forgerock.financial",
+                                  "path": "/",
+                                  "secure": false,
+                                  "value": "01",
+                                  "key": "amlbcookie"
+                                },
+                                {
+                                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                                  "httpOnly": false,
+                                  "domain": "ob.forgerock.financial",
+                                  "path": "/",
+                                  "secure": false,
+                                  "value": "7g2EmmA674oQbwhFmxU0GT094no.*AAJTSQACMDEAAlNLABx2am5pb2N2RnhHelNRU084T3E5YW92cDhjdG89AAJTMQAA*",
+                                  "key": "iPlanetDirectoryPro"
+                                },
+                                {
+                                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                                  "httpOnly": true,
+                                  "domain": "jwkms.ob.forgerock.financial",
+                                  "path": "/",
+                                  "secure": true,
+                                  "value": "C1841FA66D4D02E37604752448B582F9",
+                                  "key": "JSESSIONID"
+                                }
+                              ],
+                              "responseTime": null,
+                              "body": "eyJraWQiOiIwNzIyMjMwYy0zMjMyLTQ3MjUtODY0Yy01Njg4NDQ5YmM3ZjYiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI5MWMzYzUxNy05ZGI2LTQxN2UtOGIwNS04YjExODhmN2EyZDYiLCJhdWQiOiJodHRwczpcL1wvbWF0bHMuYXMuYXNwc3Aub2IuZm9yZ2Vyb2NrLmZpbmFuY2lhbFwvb2F1dGgyXC9vcGVuYmFua2luZyIsImlzcyI6IjkxYzNjNTE3LTlkYjYtNDE3ZS04YjA1LThiMTE4OGY3YTJkNiIsImV4cCI6MTUzNTc1ODg3OCwiaWF0IjoxNTM1NzU4NTc4LCJqdGkiOiJkMTFlMDg3Ni01ZjQxLTQwNjUtYWQwMi1mMzYxNGU5ZjllY2IifQ.f8OT4Q-pRcTAzqkfQJ7QWCPznTCqUUpWwTzAtevD53Bc8kdfAEQi4pQtJmHDd8_eH4vX_ebWzvT7rVcW3H0dcJ3Ju_ugKYtskYaDdy-E5RU4425N5JMj9pTwT0RcPPKfpHL9SUTgVLYeeHwTvKi812RVhHzawrhE6TpHzO6lYpPIueqRjY0B_INbYt3rSb_EHoFsm_RelaMEwzuRqqhZfwbtZJxYiPRFNm5NlK9E7SXtc1669oAt7E8UbV5XOWELGVfhgUWXuUuT882mFz7th5gkhKGo5q-QWNOE1Swy9Hiq-HLqDmNfXle97nWX1r7fyKJ_E_GoLqxVMWzpmVky7Q"
+                            }
+                          ]
+                        },
+                        {
+                          "_postman_id": "4326bca2-9997-4492-af5b-ca744eda37a7",
+                          "name": "Client credential",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "id": "e89d6cf8-d90b-4c6e-afbc-0c19ab51ccf3",
+                                "exec": [
+                                  "pm.test(\"response must be valid and have a json body\", function () {",
+                                  "    pm.response.to.have.status(200);",
+                                  "    pm.response.to.be.withBody;",
+                                  "    pm.response.to.be.json;",
+                                  "});",
+                                  "",
+                                  "var data = JSON.parse(responseBody);",
+                                  "",
+                                  "pm.test(\"To have an access token and id token\", function () {",
+                                  "    pm.expect(data.access_token).to.not.be.null;",
+                                  "    pm.expect(data.id_token).to.not.be.null;",
+                                  "});",
+                                  "",
+                                  "postman.setEnvironmentVariable(\"access_token\", data.access_token);",
+                                  "postman.setEnvironmentVariable(\"id_token\", data.id_token);",
+                                  ""
+                                ],
+                                "type": "text/javascript"
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "key": "grant_type",
+                                  "value": "client_credentials",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "scope",
+                                  "value": "openid accounts payments",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "client_assertion_type",
+                                  "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "client_assertion",
+                                  "value": "{{client_credential_jwt}}",
+                                  "type": "text"
+                                }
+                              ]
+                            },
+                            "url": "{{AS_token_endpoint}}"
+                          },
+                          "response": [
+                            {
+                              "id": "4034024a-3097-4931-9808-36d73a3c7a45",
+                              "name": "Client credential",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded",
+                                    "disabled": false
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "key": "grant_type",
+                                      "value": "client_credentials",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "key": "scope",
+                                      "value": "openid accounts payments",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "key": "client_assertion_type",
+                                      "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "key": "client_assertion",
+                                      "value": "{{client_credential_jwt}}",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": "{{AS_token_endpoint}}"
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Accept-Ranges",
+                                  "value": "bytes",
+                                  "name": "Accept-Ranges",
+                                  "description": "Content-Types that are acceptable"
+                                },
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-store",
+                                  "name": "Cache-Control",
+                                  "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json",
+                                  "name": "Content-Type",
+                                  "description": "The mime type of this content"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 31 Aug 2018 23:36:21 GMT",
+                                  "name": "Date",
+                                  "description": "The date and time that the message was sent"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache",
+                                  "name": "Pragma",
+                                  "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+                                },
+                                {
+                                  "key": "Server",
+                                  "value": "Restlet-Framework/2.3.4",
+                                  "name": "Server",
+                                  "description": "A name for the server"
+                                },
+                                {
+                                  "key": "Strict-Transport-Security",
+                                  "value": "max-age=31536000; includeSubdomains; preload",
+                                  "name": "Strict-Transport-Security",
+                                  "description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+                                },
+                                {
+                                  "key": "Vary",
+                                  "value": "Accept-Charset, Accept-Encoding, Accept-Language, Accept",
+                                  "name": "Vary",
+                                  "description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff",
+                                  "name": "X-Content-Type-Options",
+                                  "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY",
+                                  "name": "X-Frame-Options",
+                                  "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+                                },
+                                {
+                                  "key": "transfer-encoding",
+                                  "value": "chunked",
+                                  "name": "transfer-encoding",
+                                  "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+                                },
+                                {
+                                  "key": "x-fapi-interaction-id",
+                                  "value": "34e999b0-8754-4952-9e7b-ddc137facc63",
+                                  "name": "x-fapi-interaction-id",
+                                  "description": "Custom header"
+                                }
+                              ],
+                              "cookie": [
+                                {
+                                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                                  "httpOnly": false,
+                                  "domain": "ob.forgerock.financial",
+                                  "path": "/",
+                                  "secure": false,
+                                  "value": "01",
+                                  "key": "amlbcookie"
+                                },
+                                {
+                                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                                  "httpOnly": false,
+                                  "domain": "ob.forgerock.financial",
+                                  "path": "/",
+                                  "secure": false,
+                                  "value": "7g2EmmA674oQbwhFmxU0GT094no.*AAJTSQACMDEAAlNLABx2am5pb2N2RnhHelNRU084T3E5YW92cDhjdG89AAJTMQAA*",
+                                  "key": "iPlanetDirectoryPro"
+                                }
+                              ],
+                              "responseTime": null,
+                              "body": "{\"access_token\":\"eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoiRm9sN0lwZEtlTFptekt0Q0VnaTFMRGhTSXpNPSIsImFsZyI6IkVTMjU2In0.eyJzdWIiOiI5MWMzYzUxNy05ZGI2LTQxN2UtOGIwNS04YjExODhmN2EyZDYiLCJhdWRpdFRyYWNraW5nSWQiOiIyMjMxYmMyOS00MjBkLTRlM2QtYjEwNC00ZDBjMDNlNGIyM2MiLCJpc3MiOiJodHRwczovL21hdGxzLmFzLmFzcHNwLm9iLmZvcmdlcm9jay5maW5hbmNpYWwvb2F1dGgyL29wZW5iYW5raW5nIiwidG9rZW5OYW1lIjoiYWNjZXNzX3Rva2VuIiwidG9rZW5fdHlwZSI6IkJlYXJlciIsImF1dGhHcmFudElkIjoiZjIyOTEyM2UtMDM5Yi00M2YxLThjOTctYmM0YWJkNmI0OWE5IiwiYXVkIjoiOTFjM2M1MTctOWRiNi00MTdlLThiMDUtOGIxMTg4ZjdhMmQ2IiwibmJmIjoxNTM1NzU4NTgxLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwic2NvcGUiOlsib3BlbmlkIiwicGF5bWVudHMiLCJhY2NvdW50cyJdLCJhdXRoX3RpbWUiOjE1MzU3NTg1ODEsInJlYWxtIjoiL29wZW5iYW5raW5nIiwiZXhwIjoxNTM1ODQ0OTgxLCJpYXQiOjE1MzU3NTg1ODEsImV4cGlyZXNfaW4iOjg2NDAwLCJqdGkiOiIwMWJiYmI3OS1kNTM2LTQ0ODMtYjkyMi1jMDk0NDdlMDc1MjcifQ.XUCjoPXgzZjfsy8mwFTAvsTPE9UZZ15YxTK3K4aQQDkTTIKJdjG6b1t899qtPE5ACOhHneGhoOLIPdqXf361lQ\",\"scope\":\"openid payments accounts\",\"id_token\":\"eyJ0eXAiOiJKV1QiLCJraWQiOiJiL082T3ZWdjEreStXZ3JINVVpOVdUaW9MdDA9IiwiYWxnIjoiUlMyNTYifQ.eyJhdF9oYXNoIjoiR3FGWDl0X3N3OXFGQms0U0NMYmljZyIsInN1YiI6IjkxYzNjNTE3LTlkYjYtNDE3ZS04YjA1LThiMTE4OGY3YTJkNiIsImF1ZGl0VHJhY2tpbmdJZCI6IjA5MDFlY2FmLWEwMDgtNDU3Mi04ZDg0LTMwYmRmYzQ1NGMxNi0zMTk1OTQ4IiwiaXNzIjoiaHR0cHM6Ly9tYXRscy5hcy5hc3BzcC5vYi5mb3JnZXJvY2suZmluYW5jaWFsL29hdXRoMi9vcGVuYmFua2luZyIsInRva2VuTmFtZSI6ImlkX3Rva2VuIiwiYXVkIjoiOTFjM2M1MTctOWRiNi00MTdlLThiMDUtOGIxMTg4ZjdhMmQ2IiwiYXpwIjoiOTFjM2M1MTctOWRiNi00MTdlLThiMDUtOGIxMTg4ZjdhMmQ2IiwiYXV0aF90aW1lIjoxNTM1NzU4NTgxLCJyZWFsbSI6Ii9vcGVuYmFua2luZyIsImV4cCI6MTUzNTg0NDk4MSwidG9rZW5UeXBlIjoiSldUVG9rZW4iLCJpYXQiOjE1MzU3NTg1ODF9.jRmirrBixjkJ_eQa3qxXSdHAaX47b54x63Zjx2039cH4i2P24TYSFtIL8fyPxysESZKPq-vkMsYSQhaCZ8ZLIT8iEbkKBZo8OYa8THoqpMclgsK9y86umj7vY68HT2vmOQdJAfMEKhlTl0Vcye2j7M43rzjgA-3vP41YMnR2_0SYBJEOekpaZJpxcgJH4jAlGak7bmntZc36JHmWi_-uIifKKkeVsGIdGKNqWkFEuYsWcPhBY07Ka94KOFa8CNny_S5UMZYLRXa7OHjaKzu8h_-zL8h9iCrcYEL1nq-ajiNwouQRICSBQ7HE9pMaTBdPHHKRBOUihr1SfMnNM_6bAQ\",\"token_type\":\"Bearer\",\"expires_in\":86399}"
+                            }
+                          ]
+                        },
+                        {
+                          "_postman_id": "96981e83-23d3-4794-89e0-2e1ed20212a2",
+                          "name": "Create domestic payment consent",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "id": "b030002c-c0b7-4583-ba27-4a1c6b3f4d9d",
+                                "exec": [
+                                  "pm.test(\"Status code is 201 and return json body\", function () {",
+                                  "    pm.response.to.have.status(201);",
+                                  "    pm.response.to.be.withBody;",
+                                  "    pm.response.to.be.json;",
+                                  "});",
+                                  "",
+                                  "var data = JSON.parse(responseBody);",
+                                  "",
+                                  "pm.test(\"To have a ConsentId id\", function () {",
+                                  "    pm.expect(data.Data.ConsentId).to.not.be.null;",
+                                  "});",
+                                  "",
+                                  "pm.test(\"Status is AwaitingAuthorisation\", function () {",
+                                  "    pm.expect(data.Data.Status).to.eql(\"AwaitingAuthorisation\");",
+                                  "});",
+                                  "",
+                                  "postman.setEnvironmentVariable(\"ConsentId\", data.Data.ConsentId);"
+                                ],
+                                "type": "text/javascript"
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "x-idempotency-key",
+                                "value": "FRESCO.21302.GFX.20"
+                              },
+                              {
+                                "key": "x-jws-signature",
+                                "value": "TGlmZSdzIGEgam91cm5leSBub3QgYSBkZXN0aW5hdGlvbiA=..T2ggZ29vZCBldmVuaW5nIG1yIHR5bGVyIGdvaW5nIGRvd24gPw=="
+                              },
+                              {
+                                "key": "x-fapi-financial-id",
+                                "value": "{{ASPSP_FINANCIAL_ID}}"
+                              },
+                              {
+                                "key": "x-fapi-customer-last-logged-time",
+                                "value": "Sun, 10 Sep 2017 19:43:31 UTC"
+                              },
+                              {
+                                "key": "x-fapi-customer-ip-address",
+                                "value": "104.25.212.99"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"Data\": {\n    \"Initiation\": {\n      \"InstructionIdentification\": \"ACME412\",\n      \"EndToEndIdentification\": \"FRESCO.21302.GFX.20\",\n      \"InstructedAmount\": {\n        \"Amount\": \"165.88\",\n        \"Currency\": \"GBP\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"ACME Inc\",\n        \"SecondaryIdentification\": \"0002\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"FRESCO-101\",\n        \"Unstructured\": \"Internal ops code 5120101\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"EcommerceGoods\",\n    \"MerchantCategoryCode\": \"5967\",\n    \"MerchantCustomerIdentification\": \"053598653254\",\n    \"DeliveryAddress\": {\n      \"AddressLine\": [\n        \"Flat 7\",\n        \"Acacia Lodge\"\n      ],\n      \"StreetName\": \"Acacia Avenue\",\n      \"BuildingNumber\": \"27\",\n      \"PostCode\": \"GU31 2ZZ\",\n      \"TownName\": \"Sparsholt\",\n      \"CountySubDivision\": [\n        \"Wessex\"\n      ],\n      \"Country\": \"UK\"\n    }\n  }\n}"
+                            },
+                            "url": "{{RS}}/open-banking/v3.0/domestic-payment-consents"
+                          },
+                          "response": []
+                        },
+                        {
+                          "_postman_id": "aa4c01f4-bdfa-42d1-8e50-8971ae817ee3",
+                          "name": "Get domestic payment consent",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "id": "f0b9d153-c57e-413c-bc8c-c5dd1ca05a12",
+                                "exec": [
+                                  "pm.test(\"Status code is 200 and return json body\", function () {",
+                                  "    pm.response.to.have.status(200);",
+                                  "    pm.response.to.be.withBody;",
+                                  "    pm.response.to.be.json;",
+                                  "});",
+                                  "",
+                                  "var data = JSON.parse(responseBody);",
+                                  "",
+                                  "pm.test(\"To have a ConsentId id\", function () {",
+                                  "    pm.expect(data.Data.ConsentId).to.eql(postman.getEnvironmentVariable(\"ConsentId\"));",
+                                  "});",
+                                  "",
+                                  "pm.test(\"Status is AwaitingAuthorisation\", function () {",
+                                  "    pm.expect(data.Data.Status).to.eql(\"AwaitingAuthorisation\");",
+                                  "});",
+                                  ""
+                                ],
+                                "type": "text/javascript"
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "x-idempotency-key",
+                                "value": "FRESCO.21302.GFX.20"
+                              },
+                              {
+                                "key": "x-jws-signature",
+                                "value": "TGlmZSdzIGEgam91cm5leSBub3QgYSBkZXN0aW5hdGlvbiA=..T2ggZ29vZCBldmVuaW5nIG1yIHR5bGVyIGdvaW5nIGRvd24gPw==",
+                                "disabled": true
+                              },
+                              {
+                                "key": "x-fapi-financial-id",
+                                "value": "{{ASPSP_FINANCIAL_ID}}"
+                              },
+                              {
+                                "key": "x-fapi-customer-last-logged-time",
+                                "value": "Sun, 10 Sep 2017 19:43:31 UTC"
+                              },
+                              {
+                                "key": "x-fapi-customer-ip-address",
+                                "value": "104.25.212.99"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": ""
+                            },
+                            "url": "{{RS}}/open-banking/v3.0/domestic-payment-consents/{{ConsentId}}"
+                          },
+                          "response": []
+                        }
+                      ],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "id": "6bfc42c3-04f3-4887-ac02-a1847816b267",
+                            "type": "text/javascript",
+                            "exec": [
+                              ""
+                            ]
+                          }
+                        },
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "9e359915-521c-4fce-a3ea-f31c55421a1e",
+                            "type": "text/javascript",
+                            "exec": [
+                              ""
+                            ]
+                          }
+                        }
+                      ],
+                      "_postman_isSubFolder": true
+                    },
+                    {
+                      "_postman_id": "fc95c7ca-1622-4ff1-802b-0b8338043b9c",
+                      "name": "Auth & Consent",
+                      "description": "",
+                      "item": [
+                        {
+                          "_postman_id": "a661ebe4-7f6a-46e5-aad8-74c37c472d00",
+                          "name": "Generate request parameter",
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "id": "c47722f0-ee5d-4965-9042-cdd6a1de8d79",
+                                "exec": [
+                                  "postman.setEnvironmentVariable('exp',(new Date().getTime() / 1000) + 60*5);",
+                                  ""
+                                ],
+                                "type": "text/javascript"
+                              }
+                            },
+                            {
+                              "listen": "test",
+                              "script": {
+                                "id": "37493466-77d5-4461-bc59-a9ac50e2a207",
+                                "exec": [
+                                  "pm.test(\"response must be valid and have a body\", function () {",
+                                  "     pm.response.to.be.ok;",
+                                  "     pm.response.to.be.withBody;",
+                                  "});",
+                                  "",
+                                  "postman.setEnvironmentVariable(\"request_parameter\", responseBody);",
+                                  ""
+                                ],
+                                "type": "text/javascript"
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "jwkUri",
+                                "value": "{{AS_JWK_URI}}"
+                              },
+                              {
+                                "key": "issuerId",
+                                "value": "{{CLIENT_ID}}"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"aud\": \"{{AS_ISSUER_ID}}\",\n  \"scope\": \"openid accounts payments\",\n  \"iss\": \"{{CLIENT_ID}}\",\n  \"claims\": {\n    \"id_token\": {\n      \"acr\": {\n        \"value\": \"urn:openbanking:psd2:sca\",\n        \"essential\": true\n      },\n      \"openbanking_intent_id\": {\n        \"value\": \"{{ConsentId}}\",\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"openbanking_intent_id\": {\n        \"value\": \"{{ConsentId}}\",\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{CLIENT_REDIRECT_URI}}\",\n  \"state\": \"10d260bf-a7d9-444a-92d9-7b7a5f088208\",\n  \"exp\": {{exp}},\n  \"nonce\": \"10d260bf-a7d9-444a-92d9-7b7a5f088208\",\n  \"client_id\": \"{{CLIENT_ID}}\"\n}"
+                            },
+                            "url": "{{JWKMS}}/api/crypto/signClaims"
+                          },
+                          "response": [
+                            {
+                              "id": "b0d5813d-98e0-4fc6-9ba8-8758159afae0",
+                              "name": "Generate request parameter",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json",
+                                    "disabled": false
+                                  },
+                                  {
+                                    "key": "jwkUri",
+                                    "value": "{{AS_JWK_URI}}",
+                                    "disabled": false
+                                  },
+                                  {
+                                    "key": "issuerId",
+                                    "value": "{{CLIENT_ID}}",
+                                    "disabled": false
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"aud\": \"{{AS_ISSUER_ID}}\",\n  \"scope\": \"openid accounts payments\",\n  \"iss\": \"{{CLIENT_ID}}\",\n  \"claims\": {\n    \"id_token\": {\n      \"acr\": {\n        \"value\": \"urn:openbanking:psd2:sca\",\n        \"essential\": true\n      },\n      \"openbanking_intent_id\": {\n        \"value\": \"{{PaymentId}}\",\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"openbanking_intent_id\": {\n        \"value\": \"{{PaymentId}}\",\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{CLIENT_REDIRECT_URI}}\",\n  \"state\": \"10d260bf-a7d9-444a-92d9-7b7a5f088208\",\n  \"exp\": {{exp}},\n  \"nonce\": \"10d260bf-a7d9-444a-92d9-7b7a5f088208\",\n  \"client_id\": \"{{CLIENT_ID}}\"\n}"
+                                },
+                                "url": "{{JWKMS}}/api/crypto/signClaims"
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "plain",
+                              "header": [
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-cache, no-store, max-age=0, must-revalidate",
+                                  "name": "Cache-Control",
+                                  "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                                },
+                                {
+                                  "key": "Content-Length",
+                                  "value": "1410",
+                                  "name": "Content-Length",
+                                  "description": "The length of the response body in octets (8-bit bytes)"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain;charset=UTF-8",
+                                  "name": "Content-Type",
+                                  "description": "The mime type of this content"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 31 Aug 2018 23:36:28 GMT",
+                                  "name": "Date",
+                                  "description": "The date and time that the message was sent"
+                                },
+                                {
+                                  "key": "Expires",
+                                  "value": "0",
+                                  "name": "Expires",
+                                  "description": "Gives the date/time after which the response is considered stale"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache",
+                                  "name": "Pragma",
+                                  "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+                                },
+                                {
+                                  "key": "Strict-Transport-Security",
+                                  "value": "max-age=31536000 ; includeSubDomains",
+                                  "name": "Strict-Transport-Security",
+                                  "description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff",
+                                  "name": "X-Content-Type-Options",
+                                  "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY",
+                                  "name": "X-Frame-Options",
+                                  "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+                                },
+                                {
+                                  "key": "X-XSS-Protection",
+                                  "value": "1; mode=block",
+                                  "name": "X-XSS-Protection",
+                                  "description": "Cross-site scripting (XSS) filter"
+                                },
+                                {
+                                  "key": "x-fapi-interaction-id",
+                                  "value": "2e4e1f3f-6d9d-4c8b-be7c-23b6622a39c1",
+                                  "name": "x-fapi-interaction-id",
+                                  "description": "Custom header"
+                                }
+                              ],
+                              "cookie": [
+                                {
+                                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                                  "httpOnly": false,
+                                  "domain": "ob.forgerock.financial",
+                                  "path": "/",
+                                  "secure": false,
+                                  "value": "01",
+                                  "key": "amlbcookie"
+                                },
+                                {
+                                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                                  "httpOnly": false,
+                                  "domain": "ob.forgerock.financial",
+                                  "path": "/",
+                                  "secure": false,
+                                  "value": "7g2EmmA674oQbwhFmxU0GT094no.*AAJTSQACMDEAAlNLABx2am5pb2N2RnhHelNRU084T3E5YW92cDhjdG89AAJTMQAA*",
+                                  "key": "iPlanetDirectoryPro"
+                                },
+                                {
+                                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                                  "httpOnly": true,
+                                  "domain": "jwkms.ob.forgerock.financial",
+                                  "path": "/",
+                                  "secure": true,
+                                  "value": "C1841FA66D4D02E37604752448B582F9",
+                                  "key": "JSESSIONID"
+                                }
+                              ],
+                              "responseTime": null,
+                              "body": "eyJraWQiOiIwNzIyMjMwYy0zMjMyLTQ3MjUtODY0Yy01Njg4NDQ5YmM3ZjYiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczpcL1wvbWF0bHMuYXMuYXNwc3Aub2IuZm9yZ2Vyb2NrLmZpbmFuY2lhbFwvb2F1dGgyXC9vcGVuYmFua2luZyIsInNjb3BlIjoib3BlbmlkIGFjY291bnRzIHBheW1lbnRzIiwiaXNzIjoiOTFjM2M1MTctOWRiNi00MTdlLThiMDUtOGIxMTg4ZjdhMmQ2IiwiY2xhaW1zIjp7ImlkX3Rva2VuIjp7ImFjciI6eyJ2YWx1ZSI6InVybjpvcGVuYmFua2luZzpwc2QyOnNjYSIsImVzc2VudGlhbCI6dHJ1ZX0sIm9wZW5iYW5raW5nX2ludGVudF9pZCI6eyJ2YWx1ZSI6IlBmZGEzOWVmNi1jODFmLTQ5YjYtOTEwMC0wNjhmYjg4YmI4ZDgiLCJlc3NlbnRpYWwiOnRydWV9fSwidXNlcmluZm8iOnsib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiUGZkYTM5ZWY2LWM4MWYtNDliNi05MTAwLTA2OGZiODhiYjhkOCIsImVzc2VudGlhbCI6dHJ1ZX19fSwicmVzcG9uc2VfdHlwZSI6ImNvZGUgaWRfdG9rZW4iLCJyZWRpcmVjdF91cmkiOiJodHRwczpcL1wvd3d3Lmdvb2dsZS5jby51a1wvIiwic3RhdGUiOiIxMGQyNjBiZi1hN2Q5LTQ0NGEtOTJkOS03YjdhNWYwODgyMDgiLCJleHAiOjE1MzU3NTg4ODgsIm5vbmNlIjoiMTBkMjYwYmYtYTdkOS00NDRhLTkyZDktN2I3YTVmMDg4MjA4IiwiaWF0IjoxNTM1NzU4NTg4LCJjbGllbnRfaWQiOiI5MWMzYzUxNy05ZGI2LTQxN2UtOGIwNS04YjExODhmN2EyZDYiLCJqdGkiOiIzMzI1YWFjOC05Mzc4LTRjNzUtYWFiNC1lMTg3NzA4MDdiNGYifQ.fWpDKRCIq72DlJ_npxXPBQNjIPyBBbowaIMlZOkX6NI682Lcw9PD554hqRwfeoPkMx_YfuPTYDqfhBiagl__I9qeAFTLx4ItA6VZpmJAvGFkReVjJ0TNJlSk8gDtYUMnZGMFtP_OWJYm5jG9AZt1MlFY11sIPos7Pm7DvVUODexz_CObDTNgG2TXy0dCc6-HQYMUUSMIEhGM00mM35NCyLIBBUMFgtstD5HsC4GpTBPL20_cuqIgA4XPSt_hADGYGTtuRlvM6dAoSF0nb4Hn7sYtw9aQUsz4XLWS9_6JxryAb36YrgPhTyyP-5Uq7_FtdLTC2vfXMiCjc9gNvZ50Bw"
+                            }
+                          ]
+                        },
+                        {
+                          "_postman_id": "0c37eed2-6766-4b40-9ab5-418d40f9f08f",
+                          "name": "Hybrid flow - OB official API",
+                          "event": [
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "type": "text/javascript",
+                                "exec": [
+                                  "postman.setEnvironmentVariable('exp',(new Date().getTime() / 1000) + 60*5);",
+                                  ""
+                                ]
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "jwkUri",
+                                "value": "{{AS_JWK_URI}}"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": ""
+                            },
+                            "url": {
+                              "raw": "{{AS_authorization_endpoint}}?response_type=code id_token&client_id={{CLIENT_ID}}&state=10d260bf-a7d9-444a-92d9-7b7a5f088208&nonce=10d260bf-a7d9-444a-92d9-7b7a5f088208&scope=openid payments accounts&redirect_uri={{CLIENT_REDIRECT_URI}}&request={{request_parameter}}",
+                              "host": [
+                                "{{AS_authorization_endpoint}}"
+                              ],
+                              "query": [
+                                {
+                                  "key": "response_type",
+                                  "value": "code id_token",
+                                  "equals": true
+                                },
+                                {
+                                  "key": "client_id",
+                                  "value": "{{CLIENT_ID}}",
+                                  "equals": true
+                                },
+                                {
+                                  "key": "state",
+                                  "value": "10d260bf-a7d9-444a-92d9-7b7a5f088208",
+                                  "equals": true
+                                },
+                                {
+                                  "key": "nonce",
+                                  "value": "10d260bf-a7d9-444a-92d9-7b7a5f088208",
+                                  "equals": true
+                                },
+                                {
+                                  "key": "scope",
+                                  "value": "openid payments accounts",
+                                  "equals": true
+                                },
+                                {
+                                  "key": "redirect_uri",
+                                  "value": "{{CLIENT_REDIRECT_URI}}",
+                                  "equals": true
+                                },
+                                {
+                                  "key": "request",
+                                  "value": "{{request_parameter}}",
+                                  "equals": true
+                                }
+                              ]
+                            }
+                          },
+                          "response": []
+                        }
+                      ],
+                      "_postman_isSubFolder": true
+                    },
+                    {
+                      "_postman_id": "75711497-c2c7-4131-9f10-d5f6b22e2453",
+                      "name": "Token exchange",
+                      "description": "",
+                      "item": [
+                        {
+                          "_postman_id": "a973a185-907e-41c0-bf72-aa073ac8f923",
+                          "name": "Exchange code - OB official API",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "id": "0d31e9ad-5fd0-4c7d-ac0e-10672ae939a7",
+                                "exec": [
+                                  "var data = JSON.parse(responseBody);",
+                                  "",
+                                  "postman.setEnvironmentVariable(\"access_token_with_consent\", data.access_token);",
+                                  "postman.setEnvironmentVariable(\"refresh_token_with_consent\", data.refresh_token);",
+                                  "postman.setEnvironmentVariable(\"id_token\", data.id_token);"
+                                ],
+                                "type": "text/javascript"
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "code",
+                                  "value": "38be1c73-d78e-4af5-8733-2e88f8fb832b",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "redirect_uri",
+                                  "value": "{{CLIENT_REDIRECT_URI}}",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "client_assertion_type",
+                                  "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "client_assertion",
+                                  "value": "{{client_credential_jwt}}",
+                                  "type": "text"
+                                }
+                              ]
+                            },
+                            "url": "{{AS_token_endpoint}}"
+                          },
+                          "response": [
+                            {
+                              "id": "f1e097d1-a6e0-40da-a2ac-2ec297d36d7d",
+                              "name": "Exchange code",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/x-www-form-urlencoded",
+                                    "disabled": false
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "urlencoded",
+                                  "urlencoded": [
+                                    {
+                                      "key": "grant_type",
+                                      "value": "authorization_code",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "key": "code",
+                                      "value": "d6da894e-2f08-44a6-a1dc-3605cffbbe3c",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "key": "redirect_uri",
+                                      "value": "{{CLIENT_REDIRECT_URI}}",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "key": "client_assertion_type",
+                                      "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                                      "type": "text"
+                                    },
+                                    {
+                                      "key": "client_assertion",
+                                      "value": "{{client_credential_jwt}}",
+                                      "type": "text"
+                                    }
+                                  ]
+                                },
+                                "url": "{{AS_token_endpoint}}"
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Accept-Ranges",
+                                  "value": "bytes",
+                                  "name": "Accept-Ranges",
+                                  "description": "Content-Types that are acceptable"
+                                },
+                                {
+                                  "key": "Cache-Control",
+                                  "value": "no-store",
+                                  "name": "Cache-Control",
+                                  "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                                },
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json",
+                                  "name": "Content-Type",
+                                  "description": "The mime type of this content"
+                                },
+                                {
+                                  "key": "Date",
+                                  "value": "Fri, 31 Aug 2018 23:39:14 GMT",
+                                  "name": "Date",
+                                  "description": "The date and time that the message was sent"
+                                },
+                                {
+                                  "key": "Pragma",
+                                  "value": "no-cache",
+                                  "name": "Pragma",
+                                  "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+                                },
+                                {
+                                  "key": "Server",
+                                  "value": "Restlet-Framework/2.3.4",
+                                  "name": "Server",
+                                  "description": "A name for the server"
+                                },
+                                {
+                                  "key": "Strict-Transport-Security",
+                                  "value": "max-age=31536000; includeSubdomains; preload",
+                                  "name": "Strict-Transport-Security",
+                                  "description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+                                },
+                                {
+                                  "key": "Vary",
+                                  "value": "Accept-Charset, Accept-Encoding, Accept-Language, Accept",
+                                  "name": "Vary",
+                                  "description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+                                },
+                                {
+                                  "key": "X-Content-Type-Options",
+                                  "value": "nosniff",
+                                  "name": "X-Content-Type-Options",
+                                  "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+                                },
+                                {
+                                  "key": "X-Frame-Options",
+                                  "value": "DENY",
+                                  "name": "X-Frame-Options",
+                                  "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+                                },
+                                {
+                                  "key": "transfer-encoding",
+                                  "value": "chunked",
+                                  "name": "transfer-encoding",
+                                  "description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+                                },
+                                {
+                                  "key": "x-fapi-interaction-id",
+                                  "value": "b246c5f1-44c5-43c6-8a9a-f42410d90e7e",
+                                  "name": "x-fapi-interaction-id",
+                                  "description": "Custom header"
+                                }
+                              ],
+                              "cookie": [
+                                {
+                                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                                  "httpOnly": false,
+                                  "domain": "ob.forgerock.financial",
+                                  "path": "/",
+                                  "secure": false,
+                                  "value": "01",
+                                  "key": "amlbcookie"
+                                },
+                                {
+                                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                                  "httpOnly": false,
+                                  "domain": "ob.forgerock.financial",
+                                  "path": "/",
+                                  "secure": false,
+                                  "value": "7g2EmmA674oQbwhFmxU0GT094no.*AAJTSQACMDEAAlNLABx2am5pb2N2RnhHelNRU084T3E5YW92cDhjdG89AAJTMQAA*",
+                                  "key": "iPlanetDirectoryPro"
+                                }
+                              ],
+                              "responseTime": null,
+                              "body": "{\"access_token\":\"eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoiRm9sN0lwZEtlTFptekt0Q0VnaTFMRGhTSXpNPSIsImFsZyI6IkVTMjU2In0.eyJzdWIiOiJkZW1vIiwiYXV0aF9sZXZlbCI6MCwiYXVkaXRUcmFja2luZ0lkIjoiOTZlZmZkZDUtNThmNy00OTEzLWIxOGYtMTRhNzI5YWY2N2NlIiwiaXNzIjoiaHR0cHM6Ly9tYXRscy5hcy5hc3BzcC5vYi5mb3JnZXJvY2suZmluYW5jaWFsL29hdXRoMi9vcGVuYmFua2luZyIsInRva2VuTmFtZSI6ImFjY2Vzc190b2tlbiIsInRva2VuX3R5cGUiOiJCZWFyZXIiLCJhdXRoR3JhbnRJZCI6ImE3OTYyMmZlLTU1ZWItNDVkYi05NTBmLWRmMDgwOTE1MTFkZCIsIm5vbmNlIjoiMTBkMjYwYmYtYTdkOS00NDRhLTkyZDktN2I3YTVmMDg4MjA4IiwiYXVkIjoiOTFjM2M1MTctOWRiNi00MTdlLThiMDUtOGIxMTg4ZjdhMmQ2IiwibmJmIjoxNTM1NzU4NzU0LCJncmFudF90eXBlIjoiYXV0aG9yaXphdGlvbl9jb2RlIiwic2NvcGUiOlsib3BlbmlkIiwiYWNjb3VudHMiXSwiYXV0aF90aW1lIjoxNTM1NzU4NjYzMDAwLCJjbGFpbXMiOiJ7XCJpZF90b2tlblwiOntcImFjclwiOntcInZhbHVlXCI6XCJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2FcIixcImVzc2VudGlhbFwiOnRydWV9LFwib3BlbmJhbmtpbmdfaW50ZW50X2lkXCI6e1widmFsdWVcIjpcIkFiNTQ0OTFhZC00MDk4LTRhYjMtOTNkMC01ODdkYTU3NDkyNzVcIixcImVzc2VudGlhbFwiOnRydWV9fSxcInVzZXJpbmZvXCI6e1wib3BlbmJhbmtpbmdfaW50ZW50X2lkXCI6e1widmFsdWVcIjpcIkFiNTQ0OTFhZC00MDk4LTRhYjMtOTNkMC01ODdkYTU3NDkyNzVcIixcImVzc2VudGlhbFwiOnRydWV9fX0iLCJyZWFsbSI6Ii9vcGVuYmFua2luZyIsImV4cCI6MTUzNTg0NTE1NCwiaWF0IjoxNTM1NzU4NzU0LCJleHBpcmVzX2luIjo4NjQwMCwianRpIjoiZjk1MjcyYjctOGVhNC00NmVhLTlkNDgtMjc5NGNmZjc1ZmM5In0.wnGfwVUIqTNzIMc6BGvS0VIeNBezotGq2cZjpfWafThGIxOOJ-bazWdjfr1eYV4WUk17d4JP4W0oSwCZhbgfYg\",\"refresh_token\":\"eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoiRm9sN0lwZEtlTFptekt0Q0VnaTFMRGhTSXpNPSIsImFsZyI6IkVTMjU2In0.eyJzdWIiOiJkZW1vIiwiYXV0aF9sZXZlbCI6MCwiYXVkaXRUcmFja2luZ0lkIjoiOGI1Y2JmMzQtNGMzMC00MzIzLTk0YmYtMzUxMDE5ZGRmMjljIiwiaXNzIjoiaHR0cHM6Ly9tYXRscy5hcy5hc3BzcC5vYi5mb3JnZXJvY2suZmluYW5jaWFsL29hdXRoMi9vcGVuYmFua2luZyIsInRva2VuTmFtZSI6InJlZnJlc2hfdG9rZW4iLCJhdXRoTW9kdWxlcyI6IkRhdGFTdG9yZSIsInRva2VuX3R5cGUiOiJCZWFyZXIiLCJhdXRoR3JhbnRJZCI6ImE3OTYyMmZlLTU1ZWItNDVkYi05NTBmLWRmMDgwOTE1MTFkZCIsImF1ZCI6IjkxYzNjNTE3LTlkYjYtNDE3ZS04YjA1LThiMTE4OGY3YTJkNiIsImFjciI6InVybjpvcGVuYmFua2luZzpwc2QyOnNjYSIsIm5iZiI6MTUzNTc1ODc1NCwib3BzIjoiZjkxOTBiNmEtZWYyZC00ZDk2LTkzZjAtNmE5YWQ2ZDgwMWJlIiwiZ3JhbnRfdHlwZSI6ImF1dGhvcml6YXRpb25fY29kZSIsInNjb3BlIjpbIm9wZW5pZCIsImFjY291bnRzIl0sImF1dGhfdGltZSI6MTUzNTc1ODY2MzAwMCwiY2xhaW1zIjoie1wiaWRfdG9rZW5cIjp7XCJhY3JcIjp7XCJ2YWx1ZVwiOlwidXJuOm9wZW5iYW5raW5nOnBzZDI6c2NhXCIsXCJlc3NlbnRpYWxcIjp0cnVlfSxcIm9wZW5iYW5raW5nX2ludGVudF9pZFwiOntcInZhbHVlXCI6XCJBYjU0NDkxYWQtNDA5OC00YWIzLTkzZDAtNTg3ZGE1NzQ5Mjc1XCIsXCJlc3NlbnRpYWxcIjp0cnVlfX0sXCJ1c2VyaW5mb1wiOntcIm9wZW5iYW5raW5nX2ludGVudF9pZFwiOntcInZhbHVlXCI6XCJBYjU0NDkxYWQtNDA5OC00YWIzLTkzZDAtNTg3ZGE1NzQ5Mjc1XCIsXCJlc3NlbnRpYWxcIjp0cnVlfX19IiwicmVhbG0iOiIvb3BlbmJhbmtpbmciLCJleHAiOjE1NDM1MzQ3NTQsImlhdCI6MTUzNTc1ODc1NCwiZXhwaXJlc19pbiI6Nzc3NjAwMCwianRpIjoiNTdjMDMxZDEtNmY1YS00MmYzLThkYTgtYWVlNDFjN2IyMjlkIn0.tVDa3KXC4FYLn7PvplxEPumy0dahTGRpbvID9TbtnA2n8TzRK1UyUFukUVS_sqwMVevZ0kd5QzP7QYz-881wAw\",\"scope\":\"openid accounts\",\"id_token\":\"eyJ0eXAiOiJKV1QiLCJraWQiOiJiL082T3ZWdjEreStXZ3JINVVpOVdUaW9MdDA9IiwiYWxnIjoiUlMyNTYifQ.eyJhdF9oYXNoIjoiS0djVG1nNWdId0VKUklLeC1CWUN0QSIsInN1YiI6ImRlbW8iLCJhdWRpdFRyYWNraW5nSWQiOiIwOTAxZWNhZi1hMDA4LTQ1NzItOGQ4NC0zMGJkZmM0NTRjMTYtMzE5ODc1NSIsImlzcyI6Imh0dHBzOi8vbWF0bHMuYXMuYXNwc3Aub2IuZm9yZ2Vyb2NrLmZpbmFuY2lhbC9vYXV0aDIvb3BlbmJhbmtpbmciLCJ0b2tlbk5hbWUiOiJpZF90b2tlbiIsIm5vbmNlIjoiMTBkMjYwYmYtYTdkOS00NDRhLTkyZDktN2I3YTVmMDg4MjA4IiwiYWNyIjoidXJuOm9wZW5iYW5raW5nOnBzZDI6c2NhIiwiYXVkIjoiOTFjM2M1MTctOWRiNi00MTdlLThiMDUtOGIxMTg4ZjdhMmQ2IiwiY19oYXNoIjoiNl9zNng5NjRNeFVid1V3M0M0VllKQSIsIm9wZW5iYW5raW5nX2ludGVudF9pZCI6IkFiNTQ0OTFhZC00MDk4LTRhYjMtOTNkMC01ODdkYTU3NDkyNzUiLCJvcmcuZm9yZ2Vyb2NrLm9wZW5pZGNvbm5lY3Qub3BzIjoiZjkxOTBiNmEtZWYyZC00ZDk2LTkzZjAtNmE5YWQ2ZDgwMWJlIiwiYXpwIjoiOTFjM2M1MTctOWRiNi00MTdlLThiMDUtOGIxMTg4ZjdhMmQ2IiwiYXV0aF90aW1lIjoxNTM1NzU4NjYzMDAwLCJyZWFsbSI6Ii9vcGVuYmFua2luZyIsImV4cCI6MTUzNTg0NTE1NCwidG9rZW5UeXBlIjoiSldUVG9rZW4iLCJpYXQiOjE1MzU3NTg3NTR9.H6e7uiMrfJ0aSfMKQ5BdXhb4PMP_lRSR78-Qcl18g7-Cbc-iVDeB279i9CEz20DEUUpXUDDNiRpgqQ-YTA4De3yp7gpGDXju36fNFwp32-MG_AxduMKfm57TPGFfoad9-IZC1Z6tRt3tZDEsg4XXPCMZ0U0t0UiBUJv1pNeAz5uAVfSLEfUmEyg8QONeFmNm1aZFAxk3W4nWAUIqgWqUIM9Nz3rtHiLjuxV9OQCCoPapdKGhf8mKAuLY8zK_mAaitRFHAN61dBBFHuPZoBJ_EPLXeHh0VXXCNLE7AxCqvf_fJLiPk2CLswRfbTGZLOckv54TLoewsraWMBA2Na6hmg\",\"token_type\":\"Bearer\",\"expires_in\":86399,\"nonce\":\"10d260bf-a7d9-444a-92d9-7b7a5f088208\"}"
+                            }
+                          ]
+                        }
+                      ],
+                      "event": [
+                        {
+                          "listen": "prerequest",
+                          "script": {
+                            "id": "8512eb76-c62c-4004-bf58-71ec232146b9",
+                            "type": "text/javascript",
+                            "exec": [
+                              ""
+                            ]
+                          }
+                        },
+                        {
+                          "listen": "test",
+                          "script": {
+                            "id": "ca1f7297-9204-4b82-97a2-1d88ed739194",
+                            "type": "text/javascript",
+                            "exec": [
+                              ""
+                            ]
+                          }
+                        }
+                      ],
+                      "_postman_isSubFolder": true
+                    },
+                    {
+                      "_postman_id": "6061be77-72d3-4434-88fd-2f41f17dd97d",
+                      "name": "Data access",
+                      "description": "",
+                      "item": [
+                        {
+                          "_postman_id": "5c738570-6be0-4a79-9fac-b427656040cb",
+                          "name": "Domestic Payment",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "id": "32bcd174-11b8-4b3f-b498-572e82126f98",
+                                "exec": [
+                                  "pm.test(\"Status code is 201 and return json body\", function () {",
+                                  "    pm.response.to.have.status(201);",
+                                  "    pm.response.to.be.withBody;",
+                                  "    pm.response.to.be.json;",
+                                  "});",
+                                  "",
+                                  "var data = JSON.parse(responseBody);",
+                                  "",
+                                  "pm.test(\"Has the required field\", function () {",
+                                  "    pm.expect(data.Data.DomesticPaymentId).to.not.null;",
+                                  "    pm.expect(data.Data.ConsentId).to.eql(postman.getEnvironmentVariable(\"ConsentId\"));",
+                                  "    pm.expect(data.Data.Status).to.not.null;",
+                                  "});",
+                                  "",
+                                  "pm.test(\"Status is Authorised\", function () {",
+                                  "    pm.expect(data.Data.Status).to.eql(\"AcceptedSettlementInProcess\");",
+                                  "});",
+                                  "",
+                                  "",
+                                  "",
+                                  "postman.setEnvironmentVariable(\"DomesticPaymentId\", data.Data.DomesticPaymentId);"
+                                ],
+                                "type": "text/javascript"
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token_with_consent}}"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "x-idempotency-key",
+                                "value": "FRESCO.21302.GFX.20"
+                              },
+                              {
+                                "key": "x-jws-signature",
+                                "value": "TGlmZSdzIGEgam91cm5leSBub3QgYSBkZXN0aW5hdGlvbiA=..T2ggZ29vZCBldmVuaW5nIG1yIHR5bGVyIGdvaW5nIGRvd24gPw=="
+                              },
+                              {
+                                "key": "x-fapi-financial-id",
+                                "value": "{{ASPSP_FINANCIAL_ID}}"
+                              },
+                              {
+                                "key": "x-fapi-customer-last-logged-time",
+                                "value": "Sun, 10 Sep 2017 19:43:31 UTC"
+                              },
+                              {
+                                "key": "x-fapi-customer-ip-address",
+                                "value": "104.25.212.99"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"Data\": {\n    \"ConsentId\": \"{{ConsentId}}\",\n    \"Initiation\": {\n      \"InstructionIdentification\": \"ACME412\",\n      \"EndToEndIdentification\": \"FRESCO.21302.GFX.20\",\n      \"InstructedAmount\": {\n        \"Amount\": \"165.88\",\n        \"Currency\": \"GBP\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"ACME Inc\",\n        \"SecondaryIdentification\": \"0002\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"FRESCO-101\",\n        \"Unstructured\": \"Internal ops code 5120101\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"EcommerceGoods\",\n    \"MerchantCategoryCode\": \"5967\",\n    \"MerchantCustomerIdentification\": \"053598653254\",\n    \"DeliveryAddress\": {\n      \"AddressLine\": [\n        \"Flat 7\",\n        \"Acacia Lodge\"\n      ],\n      \"StreetName\": \"Acacia Avenue\",\n      \"BuildingNumber\": \"27\",\n      \"PostCode\": \"GU31 2ZZ\",\n      \"TownName\": \"Sparsholt\",\n      \"CountySubDivision\": [\n        \"Wessex\"\n      ],\n      \"Country\": \"UK\"\n    }\n  }\n}"
+                            },
+                            "url": "{{RS}}/open-banking/v3.0/domestic-payments"
+                          },
+                          "response": []
+                        },
+                        {
+                          "_postman_id": "6beffea2-a01d-43a6-9f23-cec06a5cd2b8",
+                          "name": "Get Domestic Payment",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "id": "afa92df7-f1eb-47be-a075-851383fdfffc",
+                                "exec": [
+                                  "pm.test(\"Status code is 200 and return json body\", function () {",
+                                  "    pm.response.to.have.status(200);",
+                                  "    pm.response.to.be.withBody;",
+                                  "    pm.response.to.be.json;",
+                                  "});",
+                                  "",
+                                  "var data = JSON.parse(responseBody);",
+                                  "",
+                                  "pm.test(\"Has the required field\", function () {",
+                                  "    pm.expect(data.Data.DomesticPaymentId).to.eql(postman.getEnvironmentVariable(\"DomesticPaymentId\"));",
+                                  "    pm.expect(data.Data.ConsentId).to.eql(postman.getEnvironmentVariable(\"ConsentId\"));",
+                                  "    pm.expect(data.Data.Status).to.not.null;",
+                                  "});"
+                                ],
+                                "type": "text/javascript"
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "x-idempotency-key",
+                                "value": "FRESCO.21302.GFX.20"
+                              },
+                              {
+                                "key": "x-jws-signature",
+                                "value": "TGlmZSdzIGEgam91cm5leSBub3QgYSBkZXN0aW5hdGlvbiA=..T2ggZ29vZCBldmVuaW5nIG1yIHR5bGVyIGdvaW5nIGRvd24gPw=="
+                              },
+                              {
+                                "key": "x-fapi-financial-id",
+                                "value": "{{ASPSP_FINANCIAL_ID}}"
+                              },
+                              {
+                                "key": "x-fapi-customer-last-logged-time",
+                                "value": "Sun, 10 Sep 2017 19:43:31 UTC"
+                              },
+                              {
+                                "key": "x-fapi-customer-ip-address",
+                                "value": "104.25.212.99"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": ""
+                            },
+                            "url": "{{RS}}/open-banking/v3.0/domestic-payments/{{DomesticPaymentId}}"
+                          },
+                          "response": []
+                        }
+                      ],
+                      "_postman_isSubFolder": true
+                    }
+                  ],
+                  "_postman_isSubFolder": true
                 }
               ],
               "event": [
@@ -32151,7 +33334,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_DeleteCallbackUrl_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/callback-urls/{{CallbackUrlId}}"
                   },
                   "response": []
                 },
@@ -32239,7 +33422,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetCallbackUrls_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/callback-urls"
                   },
                   "response": []
                 }
@@ -32711,7 +33894,7 @@
                       "mode": "raw",
                       "raw": "{\n  \"Data\": {\n    \"DebtorAccount\": {\n       \"SchemeName\": \"SortCodeAccountNumber\",\n       \"Identification\": \"{{AccountIdentification}}\",\n       \"Name\": \"{{AccountName}}\"\n    },\n    \"ExpirationDateTime\": \"2019-05-02T00:00:00+00:00\"\n  }\n}"
                     },
-                    "url": "{{RS_CreateFundsConfirmationConsent_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/funds-confirmation-consents"
                   },
                   "response": []
                 }
@@ -33260,7 +34443,7 @@
                       "mode": "raw",
                       "raw": "{\n  \"Data\": {\n    \"ConsentId\": \"{{ConsentId}}\",\n    \"Reference\": \"Purchase02\",\n    \"InstructedAmount\": {\n       \"Amount\": \"2000000.00\",\n       \"Currency\": \"GBP\"\n    }\n  }\n}"
                     },
-                    "url": "{{RS_CreateFundsConfirmation_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/funds-confirmations"
                   },
                   "response": []
                 },
@@ -33323,7 +34506,7 @@
                       "mode": "raw",
                       "raw": "{\n  \"Data\": {\n    \"ConsentId\": \"{{ConsentId}}\",\n    \"Reference\": \"Purchase02\",\n    \"InstructedAmount\": {\n       \"Amount\": \"20.00\",\n       \"Currency\": \"GBP\"\n    }\n  }\n}"
                     },
-                    "url": "{{RS_CreateFundsConfirmation_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/funds-confirmations"
                   },
                   "response": []
                 },
@@ -33385,7 +34568,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetFundsConfirmationConsent_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/funds-confirmation-consents/{{ConsentId}}"
                   },
                   "response": []
                 },
@@ -33446,7 +34629,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS_GetFundsConfirmationConsent_v3.0}}"
+                    "url": "{{RS}}/open-banking/v3.0/funds-confirmation-consents/{{ConsentId}}"
                   },
                   "response": []
                 }
