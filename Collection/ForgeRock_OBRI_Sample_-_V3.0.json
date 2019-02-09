@@ -13895,7 +13895,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/party"
+                    "url": "{{RS}}/open-banking/v2.0/party"
                   },
                   "response": [
                     {
@@ -14128,7 +14128,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/statements"
+                    "url": "{{RS}}/open-banking/v2.0/statements"
                   },
                   "response": [
                     {
