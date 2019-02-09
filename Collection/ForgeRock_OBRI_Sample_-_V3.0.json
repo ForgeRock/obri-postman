@@ -27737,7 +27737,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetFilePaymentFile_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/file-payment-consents/{{ConsentId}}/file"
                           },
                           "response": []
                         }
@@ -28308,7 +28308,7 @@
                               "mode": "raw",
                               "raw": "{\n  \"Data\": {\n  \t\"ConsentId\": \"{{ConsentId}}\",\n    \"Initiation\": {\n      \"FileType\": \"UK.OBIE.PaymentInitiation.3.0\",\n      \"FileHash\": \"ewIUUXT9kXRcV1QZBvD/eEYQGUbLeLhRl/bDV79wmQs=\",\n      \"FileReference\": \"JsonExample\",\n      \"NumberOfTransactions\": \"3\",\n      \"ControlSum\": 3459.30,\n      \"RequestedExecutionDateTime\": \"2019-08-06T00:00:00+00:00\",\n\t  \"DebtorAccount\": {\n       \"SchemeName\": \"SortCodeAccountNumber\",\n       \"Identification\": \"{{AccountIdentification}}\",\n       \"Name\": \"{{AccountName}}\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"FRESCO-101\",\n        \"Unstructured\": \"Internal ops code 5120101\"\n      },\n      \"LocalInstrument\": \"Test123\"\n    }\n  }\n}"
                             },
-                            "url": "{{RS_CreateFilePayment_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/file-payments"
                           },
                           "response": []
                         },
@@ -28391,7 +28391,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetFilePayment_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/file-payments/{{FilePaymentId}}"
                           },
                           "response": []
                         }
@@ -28482,7 +28482,7 @@
                               "mode": "raw",
                               "raw": ""
                             },
-                            "url": "{{RS_GetFilePaymentReport_v3.0}}"
+                            "url": "{{RS}}/open-banking/v3.0/file-payments/{{ConsentId}}/report-file"
                           },
                           "response": []
                         }
@@ -30427,7 +30427,7 @@
                           "mode": "raw",
                           "raw": "{\n  \"Data\": {\n    \"Initiation\": {\n      \"InstructionIdentification\": \"ACME412\",\n      \"EndToEndIdentification\": \"FRESCO.21302.GFX.20\",\n      \"InstructedAmount\": {\n        \"Amount\": \"250.88\",\n        \"Currency\": \"GBP\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"SortCodeAccountNumber\",\n        \"Identification\": \"20793443634639\",\n        \"Name\": \"demo\",\n        \"SecondaryIdentification\": \"77032671\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"FRESCO-101\",\n        \"Unstructured\": \"Internal ops code 5120101\"\n      }\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"EcommerceGoods\",\n    \"MerchantCategoryCode\": \"5967\",\n    \"MerchantCustomerIdentification\": \"053598653254\",\n    \"DeliveryAddress\": {\n      \"AddressLine\": [\n        \"Flat 7\",\n        \"Acacia Lodge\"\n      ],\n      \"StreetName\": \"Acacia Avenue\",\n      \"BuildingNumber\": \"27\",\n      \"PostCode\": \"GU31 2ZZ\",\n      \"TownName\": \"Sparsholt\",\n      \"CountrySubDivision\": [\n        \"Wessex\"\n      ],\n      \"Country\": \"UK\"\n    }\n  }\n}"
                         },
-                        "url": "{{RS_CreateSingleImmediatePayment_v1.1}}"
+                        "url": "{{RS}}/open-banking/v1.1/payments"
                       },
                       "response": [
                         {
