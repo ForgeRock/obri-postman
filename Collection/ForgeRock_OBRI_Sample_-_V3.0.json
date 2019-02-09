@@ -12963,7 +12963,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/direct-debits"
+                    "url": "{{RS}}/open-banking/v2.0/direct-debits"
                   },
                   "response": [
                     {
@@ -13196,7 +13196,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/products"
+                    "url": "{{RS}}/open-banking/v2.0/products"
                   },
                   "response": [
                     {
@@ -13429,7 +13429,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/standing-orders"
+                    "url": "{{RS}}/open-banking/v2.0/standing-orders"
                   },
                   "response": [
                     {
@@ -13662,7 +13662,7 @@
                       "mode": "raw",
                       "raw": ""
                     },
-                    "url": "{{RS}}/open-banking/v3.0/offers"
+                    "url": "{{RS}}/open-banking/v2.0/offers"
                   },
                   "response": [
                     {
