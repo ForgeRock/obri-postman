@@ -661,7 +661,7 @@
                   "mode": "raw",
                   "raw": ""
                 },
-                "url": "{{RS}}:443/mtlsTest",
+                "url": "{{RS}}:443/open-banking/mtlsTest",
                 "description": "Due to postman bug https://github.com/postmanlabs/postman-app-support/issues/4707 \nwe need to setup the RS domain twice to workaround it.\nThis request is here to help you testing you did setup the certs for the RS for both with and without port 443."
               },
               "response": [
