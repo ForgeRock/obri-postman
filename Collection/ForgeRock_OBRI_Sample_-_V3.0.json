@@ -1410,6 +1410,178 @@
             }
           ],
           "_postman_isSubFolder": true
+        },
+        {
+          "_postman_id": "4e1f01eb-ec99-4a0e-8235-2c4b3d29a1b9",
+          "name": "Delete user data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c6114cf7-c3c6-43a5-8ee1-cc8516b01dac",
+                "exec": [
+                  "pm.test(\"response must be valid and have a json body\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.response.to.be.withBody;",
+                  "});",
+                  "",
+                  "postman.setEnvironmentVariable(\"PSU_SESSION_TOKEN\", responseBody);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "x-ob-monitoring",
+                "type": "text",
+                "value": "{{MONITORING_UID}}"
+              },
+              {
+                "key": "cookie",
+                "value": "obri-session={{PSU_SESSION_TOKEN}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{BANK}}/api/data/user"
+          },
+          "response": [
+            {
+              "id": "d2dc4640-721b-463e-b9d4-0d1a3b78691c",
+              "name": "Get Access Token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "disabled": false
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "username",
+                      "value": "demo",
+                      "description": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "password",
+                      "value": "changeit",
+                      "description": "",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": "{{BANK}}/api/user/authenticate"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate",
+                  "name": "Cache-Control",
+                  "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "717",
+                  "name": "Content-Length",
+                  "description": "The length of the response body in octets (8-bit bytes)"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain;charset=UTF-8",
+                  "name": "Content-Type",
+                  "description": "The mime type of this content"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 31 Aug 2018 23:41:11 GMT",
+                  "name": "Date",
+                  "description": "The date and time that the message was sent"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0",
+                  "name": "Expires",
+                  "description": "Gives the date/time after which the response is considered stale"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache",
+                  "name": "Pragma",
+                  "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000 ; includeSubDomains",
+                  "name": "Strict-Transport-Security",
+                  "description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff",
+                  "name": "X-Content-Type-Options",
+                  "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY",
+                  "name": "X-Frame-Options",
+                  "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "1; mode=block",
+                  "name": "X-XSS-Protection",
+                  "description": "Cross-site scripting (XSS) filter"
+                },
+                {
+                  "key": "x-fapi-interaction-id",
+                  "value": "ce1ae955-dfc4-4d87-b24f-5775cdfe1891",
+                  "name": "x-fapi-interaction-id",
+                  "description": "Custom header"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                  "httpOnly": false,
+                  "domain": "ob.forgerock.financial",
+                  "path": "/",
+                  "secure": false,
+                  "value": "01",
+                  "key": "amlbcookie"
+                },
+                {
+                  "expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (Coordinated Universal Time)",
+                  "httpOnly": false,
+                  "domain": "ob.forgerock.financial",
+                  "path": "/",
+                  "secure": false,
+                  "value": "7g2EmmA674oQbwhFmxU0GT094no.*AAJTSQACMDEAAlNLABx2am5pb2N2RnhHelNRU084T3E5YW92cDhjdG89AAJTMQAA*",
+                  "key": "iPlanetDirectoryPro"
+                }
+              ],
+              "responseTime": null,
+              "body": "eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJkZW1vIiwiYXV0aF9sZXZlbCI6MCwiYXVkaXRUcmFja2luZ0lkIjoiMGJhZGFlMzItNzI5ZS00NzNlLWE1MjgtMmZmZjQ4MTIwYWE5IiwiaXNzIjoiaHR0cHM6Ly9hbS5vYi5mb3JnZXJvY2suZmluYW5jaWFsOjQ0My9vYXV0aDIvYXV0aCIsInRva2VuTmFtZSI6ImFjY2Vzc190b2tlbiIsInRva2VuX3R5cGUiOiJCZWFyZXIiLCJhdXRoR3JhbnRJZCI6IjY2MjM5MzgyLTNlY2ItNDNhMS1hY2U3LTQ2YzExNDBkYTdiMiIsImF1ZCI6ImJhbmsiLCJuYmYiOjE1MzU3NTg4NzEsImdyYW50X3R5cGUiOiJwYXNzd29yZCIsInNjb3BlIjpbIm9wZW5pZCIsImdyb3VwIl0sImF1dGhfdGltZSI6MTUzNTc1ODg3MSwicmVhbG0iOiIvYXV0aCIsImV4cCI6MTUzNTc2MjQ3MSwiaWF0IjoxNTM1NzU4ODcxLCJleHBpcmVzX2luIjozNjAwLCJqdGkiOiJmYTAxMmFkOS01NWQ4LTQ3MTYtOWI1MC04ZjdjZjlhOTBkODQifQ.-8ML3Rcg9jE7FtYmGZVlkyD4hy3jNQGi9HeT8dkD7wo"
+            }
+          ]
         }
       ],
       "event": [
@@ -1921,25 +2093,25 @@
               "listen": "prerequest",
               "script": {
                 "id": "64730813-7ae3-4b7e-a82d-c3d7faef9222",
-                "type": "text/javascript",
                 "exec": [
                   "postman.setEnvironmentVariable('exp',(new Date().getTime() / 1000) + 60*5);",
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             },
             {
               "listen": "test",
               "script": {
                 "id": "32064150-688f-4520-863a-f76558f4ee5b",
-                "type": "text/javascript",
                 "exec": [
                   "var data = JSON.parse(responseBody);",
                   "pm.environment.set(\"CLIENT_ID\", data.client_id);",
                   "pm.environment.set(\"CLIENT_SECRET\", data.client_secret);",
                   "pm.environment.set(\"CLIENT_REDIRECT_URI\", data.redirect_uris);",
                   ""
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
@@ -2122,7 +2294,7 @@
               "mode": "raw",
               "raw": ""
             },
-            "url": "{{RS}}/mtlsTest"
+            "url": "{{RS}}/open-banking/mtlsTest"
           },
           "response": []
         },
