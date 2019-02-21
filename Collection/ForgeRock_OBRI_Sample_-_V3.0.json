@@ -18382,6 +18382,18 @@
                                 ],
                                 "type": "text/javascript"
                               }
+                            },
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "id": "191edc8d-c7ee-4e12-a173-b201cbfb232d",
+                                "exec": [
+                                  "var uuid = require('uuid');",
+                                  "postman.setEnvironmentVariable('x-idempotency-key', uuid.v4());",
+                                  ""
+                                ],
+                                "type": "text/javascript"
+                              }
                             }
                           ],
                           "request": {
@@ -23403,6 +23415,18 @@
                                   "});",
                                   "",
                                   "postman.setEnvironmentVariable(\"ConsentId\", data.Data.ConsentId);"
+                                ],
+                                "type": "text/javascript"
+                              }
+                            },
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "id": "472afee7-82c2-4ca8-8559-e2e6f3b028ce",
+                                "exec": [
+                                  "var uuid = require('uuid');",
+                                  "postman.setEnvironmentVariable('x-idempotency-key', uuid.v4());",
+                                  ""
                                 ],
                                 "type": "text/javascript"
                               }
