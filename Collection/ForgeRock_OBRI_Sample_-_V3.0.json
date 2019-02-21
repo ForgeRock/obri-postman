@@ -19072,6 +19072,18 @@
                                 ],
                                 "type": "text/javascript"
                               }
+                            },
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "id": "aec11091-5b05-4a80-95bd-c82b7a89794d",
+                                "exec": [
+                                  "var uuid = require('uuid');",
+                                  "postman.setEnvironmentVariable('x-idempotency-key', uuid.v4());",
+                                  ""
+                                ],
+                                "type": "text/javascript"
+                              }
                             }
                           ],
                           "request": {
