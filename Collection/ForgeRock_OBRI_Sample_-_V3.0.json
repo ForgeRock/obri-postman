@@ -19525,9 +19525,21 @@
                           "name": "Create domestic schedule payment consent",
                           "event": [
                             {
+                              "listen": "prerequest",
+                              "script": {
+                                "id": "1fd03b09-681a-4aa2-9e0f-7f4b3a5ecce7",
+                                "exec": [
+                                  "var uuid = require('uuid');",
+                                  "postman.setEnvironmentVariable('x-idempotency-key', uuid.v4());",
+                                  ""
+                                ],
+                                "type": "text/javascript"
+                              }
+                            },
+                            {
                               "listen": "test",
                               "script": {
-                                "id": "b030002c-c0b7-4583-ba27-4a1c6b3f4d9d",
+                                "id": "0a618bc7-6013-4aaa-af53-76cb57a1f205",
                                 "exec": [
                                   "pm.test(\"Status code is 201 and return json body\", function () {",
                                   "    pm.response.to.have.status(201);",
@@ -19550,16 +19562,6 @@
                                 ],
                                 "type": "text/javascript"
                               }
-                            },
-                            {
-                              "listen": "prerequest",
-                              "script": {
-                                "id": "e7853940-a449-427c-bd9c-2a2b624e7544",
-                                "exec": [
-                                  ""
-                                ],
-                                "type": "text/javascript"
-                              }
                             }
                           ],
                           "request": {
@@ -19575,7 +19577,7 @@
                               },
                               {
                                 "key": "x-idempotency-key",
-                                "value": "FRESCO.21302.GFX.20"
+                                "value": "{{x-idempotency-key}}"
                               },
                               {
                                 "key": "x-fapi-financial-id",
@@ -19601,7 +19603,7 @@
                             ],
                             "body": {
                               "mode": "raw",
-                              "raw": "{\n  \"Data\": {\n    \"Permission\":\"Create\",\n    \"Initiation\": {\n      \"RequestedExecutionDateTime\": \"2019-11-02T00:00:00+00:00\",\n      \"InstructedAmount\": {\n        \"Amount\": \"200.00\",\n        \"Currency\": \"GBP\"\n      },\n      \"DebtorAccount\": {\n        \"SchemeName\": \"SortCodeAccountNumber\",\n        \"Identification\": \"{{AccountIdentification}}\",\n        \"Name\": \"{{AccountName}}\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"Tom Kirkman\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"DSR-037\",\n        \"Unstructured\": \"Internal ops code 5120103\"\n      },\n      \"InstructionIdentification\": \"2876d876876\",\n      \"EndToEndIdentification\": \"4535353535\"\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
+                              "raw": "{\n  \"Data\": {\n    \"Permission\":\"Create\",\n    \"Initiation\": {\n      \"RequestedExecutionDateTime\": \"2019-11-02T00:00:00+00:00\",\n      \"InstructedAmount\": {\n        \"Amount\": \"200.00\",\n        \"Currency\": \"GBP\"\n      },\n       \"DebtorAccount\": {\n        \"SchemeName\": \"SortCodeAccountNumber\",\n        \"Identification\": \"{{AccountIdentification}}\",\n        \"Name\": \"{{AccountName}}\"\n      },\n      \"CreditorAccount\": {\n        \"SchemeName\": \"UK.OBIE.SortCodeAccountNumber\",\n        \"Identification\": \"08080021325698\",\n        \"Name\": \"Tom Kirkman\"\n      },\n      \"RemittanceInformation\": {\n        \"Reference\": \"DSR-037\",\n        \"Unstructured\": \"Internal ops code 5120103\"\n      },\n      \"InstructionIdentification\": \"2876d876876\",\n      \"EndToEndIdentification\": \"4535353535\"\n    }\n  },\n  \"Risk\": {\n    \"PaymentContextCode\": \"PartyToParty\"\n  }\n}"
                             },
                             "url": "{{RS}}/open-banking/v3.0/domestic-scheduled-payment-consents"
                           },
