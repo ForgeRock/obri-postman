@@ -24694,6 +24694,18 @@
                                 ],
                                 "type": "text/javascript"
                               }
+                            },
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "id": "376378ea-7256-4040-8f3b-38080dd19d30",
+                                "exec": [
+                                  "var uuid = require('uuid');",
+                                  "postman.setEnvironmentVariable('x-idempotency-key', uuid.v4());",
+                                  ""
+                                ],
+                                "type": "text/javascript"
+                              }
                             }
                           ],
                           "request": {
@@ -32898,6 +32910,84 @@
                 {
                   "_postman_id": "b5e33f2f-e9d5-41e0-9c7d-f41aaeb9a675",
                   "name": "Hybrid flow",
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "b9e9b16c-94de-452c-a129-562b5af5d821",
+                        "exec": [
+                          "postman.setEnvironmentVariable('exp',(new Date().getTime() / 1000) + 60*5);",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "jwkUri",
+                        "value": "{{AS_JWK_URI}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": ""
+                    },
+                    "url": {
+                      "raw": "{{AS_authorization_endpoint}}?response_type=code id_token&client_id={{CLIENT_ID}}&state=10d260bf-a7d9-444a-92d9-7b7a5f088208&nonce=10d260bf-a7d9-444a-92d9-7b7a5f088208&scope=openid accounts payments fundsconfirmations&redirect_uri={{CLIENT_REDIRECT_URI}}&request={{request_parameter}}",
+                      "host": [
+                        "{{AS_authorization_endpoint}}"
+                      ],
+                      "query": [
+                        {
+                          "key": "response_type",
+                          "value": "code id_token",
+                          "equals": true
+                        },
+                        {
+                          "key": "client_id",
+                          "value": "{{CLIENT_ID}}",
+                          "equals": true
+                        },
+                        {
+                          "key": "state",
+                          "value": "10d260bf-a7d9-444a-92d9-7b7a5f088208",
+                          "equals": true
+                        },
+                        {
+                          "key": "nonce",
+                          "value": "10d260bf-a7d9-444a-92d9-7b7a5f088208",
+                          "equals": true
+                        },
+                        {
+                          "key": "scope",
+                          "value": "openid accounts payments fundsconfirmations",
+                          "equals": true
+                        },
+                        {
+                          "key": "redirect_uri",
+                          "value": "{{CLIENT_REDIRECT_URI}}",
+                          "equals": true
+                        },
+                        {
+                          "key": "request",
+                          "value": "{{request_parameter}}",
+                          "equals": true
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "_postman_id": "b3a6d471-d3dc-4e71-b3c3-6126a8bf17ce",
+                  "name": "Hybrid flow Copy",
                   "event": [
                     {
                       "listen": "prerequest",
