@@ -32908,6 +32908,186 @@
                   ]
                 },
                 {
+                  "_postman_id": "f3e5dda9-768e-4729-945f-d1684651f7fe",
+                  "name": "Generate request parameter Copy",
+                  "event": [
+                    {
+                      "listen": "prerequest",
+                      "script": {
+                        "id": "8339dcb4-ad57-4fc5-8e78-7ef030330ef6",
+                        "exec": [
+                          "postman.setEnvironmentVariable('exp',(new Date().getTime() / 1000) + 60*5);",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    },
+                    {
+                      "listen": "test",
+                      "script": {
+                        "id": "3f9a474c-79f6-47c7-b3ea-ff2bdb3ef7ab",
+                        "exec": [
+                          "postman.setEnvironmentVariable(\"request_parameter\", responseBody);",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "jwkUri",
+                        "value": "{{AS_JWK_URI}}"
+                      },
+                      {
+                        "key": "issuerId",
+                        "value": "{{CLIENT_ID}}"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"aud\": \"{{AS_ISSUER_ID}}\",\n  \"scope\": \"openid accounts payments fundsconfirmations\",\n  \"iss\": \"{{CLIENT_ID}}\",\n  \"claims\": {\n    \"id_token\": {\n      \"acr\": {\n        \"value\": \"urn:openbanking:psd2:sca\",\n        \"essential\": true\n      },\n      \"openbanking_intent_id\": {\n        \"value\": \"{{ConsentId}}\",\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"openbanking_intent_id\": {\n        \"value\": \"{{ConsentId}}\",\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{CLIENT_REDIRECT_URI}}\",\n  \"state\": \"10d260bf-a7d9-444a-92d9-7b7a5f088208\",\n  \"exp\": {{exp}},\n  \"nonce\": \"10d260bf-a7d9-444a-92d9-7b7a5f088208\",\n  \"client_id\": \"{{CLIENT_ID}}\"\n}"
+                    },
+                    "url": "{{JWKMS}}/api/crypto/signClaims"
+                  },
+                  "response": [
+                    {
+                      "id": "9d339a17-92a1-41ed-8ccd-a7baffb97c3e",
+                      "name": "Generate request parameter",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "jwkUri",
+                            "value": "{{AS_JWK_URI}}"
+                          },
+                          {
+                            "key": "issuerId",
+                            "value": "{{CLIENT_ID}}"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"aud\": \"{{AS_ISSUER_ID}}\",\n  \"scope\": \"openid accounts payments\",\n  \"iss\": \"{{CLIENT_ID}}\",\n  \"claims\": {\n    \"id_token\": {\n      \"acr\": {\n        \"value\": \"urn:openbanking:psd2:sca\",\n        \"essential\": true\n      },\n      \"openbanking_intent_id\": {\n        \"value\": \"{{PaymentId}}\",\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"openbanking_intent_id\": {\n        \"value\": \"{{PaymentId}}\",\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{CLIENT_REDIRECT_URI}}\",\n  \"state\": \"10d260bf-a7d9-444a-92d9-7b7a5f088208\",\n  \"exp\": {{exp}},\n  \"nonce\": \"10d260bf-a7d9-444a-92d9-7b7a5f088208\",\n  \"client_id\": \"{{CLIENT_ID}}\"\n}"
+                        },
+                        "url": "{{JWKMS}}/api/crypto/signClaims"
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "plain",
+                      "header": [
+                        {
+                          "key": "Cache-Control",
+                          "value": "no-cache, no-store, max-age=0, must-revalidate",
+                          "name": "Cache-Control",
+                          "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+                        },
+                        {
+                          "key": "Content-Length",
+                          "value": "1410",
+                          "name": "Content-Length",
+                          "description": "The length of the response body in octets (8-bit bytes)"
+                        },
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain;charset=UTF-8",
+                          "name": "Content-Type",
+                          "description": "The mime type of this content"
+                        },
+                        {
+                          "key": "Date",
+                          "value": "Fri, 31 Aug 2018 23:36:28 GMT",
+                          "name": "Date",
+                          "description": "The date and time that the message was sent"
+                        },
+                        {
+                          "key": "Expires",
+                          "value": "0",
+                          "name": "Expires",
+                          "description": "Gives the date/time after which the response is considered stale"
+                        },
+                        {
+                          "key": "Pragma",
+                          "value": "no-cache",
+                          "name": "Pragma",
+                          "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+                        },
+                        {
+                          "key": "Strict-Transport-Security",
+                          "value": "max-age=31536000 ; includeSubDomains",
+                          "name": "Strict-Transport-Security",
+                          "description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+                        },
+                        {
+                          "key": "X-Content-Type-Options",
+                          "value": "nosniff",
+                          "name": "X-Content-Type-Options",
+                          "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+                        },
+                        {
+                          "key": "X-Frame-Options",
+                          "value": "DENY",
+                          "name": "X-Frame-Options",
+                          "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+                        },
+                        {
+                          "key": "X-XSS-Protection",
+                          "value": "1; mode=block",
+                          "name": "X-XSS-Protection",
+                          "description": "Cross-site scripting (XSS) filter"
+                        },
+                        {
+                          "key": "x-fapi-interaction-id",
+                          "value": "2e4e1f3f-6d9d-4c8b-be7c-23b6622a39c1",
+                          "name": "x-fapi-interaction-id",
+                          "description": "Custom header"
+                        }
+                      ],
+                      "cookie": [
+                        {
+                          "expires": "Invalid Date",
+                          "httpOnly": false,
+                          "domain": "ob.forgerock.financial",
+                          "path": "/",
+                          "secure": false,
+                          "value": "01",
+                          "key": "amlbcookie"
+                        },
+                        {
+                          "expires": "Invalid Date",
+                          "httpOnly": false,
+                          "domain": "ob.forgerock.financial",
+                          "path": "/",
+                          "secure": false,
+                          "value": "7g2EmmA674oQbwhFmxU0GT094no.*AAJTSQACMDEAAlNLABx2am5pb2N2RnhHelNRU084T3E5YW92cDhjdG89AAJTMQAA*",
+                          "key": "iPlanetDirectoryPro"
+                        },
+                        {
+                          "expires": "Invalid Date",
+                          "httpOnly": true,
+                          "domain": "jwkms.ob.forgerock.financial",
+                          "path": "/",
+                          "secure": true,
+                          "value": "C1841FA66D4D02E37604752448B582F9",
+                          "key": "JSESSIONID"
+                        }
+                      ],
+                      "responseTime": null,
+                      "body": "eyJraWQiOiIwNzIyMjMwYy0zMjMyLTQ3MjUtODY0Yy01Njg4NDQ5YmM3ZjYiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczpcL1wvbWF0bHMuYXMuYXNwc3Aub2IuZm9yZ2Vyb2NrLmZpbmFuY2lhbFwvb2F1dGgyXC9vcGVuYmFua2luZyIsInNjb3BlIjoib3BlbmlkIGFjY291bnRzIHBheW1lbnRzIiwiaXNzIjoiOTFjM2M1MTctOWRiNi00MTdlLThiMDUtOGIxMTg4ZjdhMmQ2IiwiY2xhaW1zIjp7ImlkX3Rva2VuIjp7ImFjciI6eyJ2YWx1ZSI6InVybjpvcGVuYmFua2luZzpwc2QyOnNjYSIsImVzc2VudGlhbCI6dHJ1ZX0sIm9wZW5iYW5raW5nX2ludGVudF9pZCI6eyJ2YWx1ZSI6IlBmZGEzOWVmNi1jODFmLTQ5YjYtOTEwMC0wNjhmYjg4YmI4ZDgiLCJlc3NlbnRpYWwiOnRydWV9fSwidXNlcmluZm8iOnsib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiUGZkYTM5ZWY2LWM4MWYtNDliNi05MTAwLTA2OGZiODhiYjhkOCIsImVzc2VudGlhbCI6dHJ1ZX19fSwicmVzcG9uc2VfdHlwZSI6ImNvZGUgaWRfdG9rZW4iLCJyZWRpcmVjdF91cmkiOiJodHRwczpcL1wvd3d3Lmdvb2dsZS5jby51a1wvIiwic3RhdGUiOiIxMGQyNjBiZi1hN2Q5LTQ0NGEtOTJkOS03YjdhNWYwODgyMDgiLCJleHAiOjE1MzU3NTg4ODgsIm5vbmNlIjoiMTBkMjYwYmYtYTdkOS00NDRhLTkyZDktN2I3YTVmMDg4MjA4IiwiaWF0IjoxNTM1NzU4NTg4LCJjbGllbnRfaWQiOiI5MWMzYzUxNy05ZGI2LTQxN2UtOGIwNS04YjExODhmN2EyZDYiLCJqdGkiOiIzMzI1YWFjOC05Mzc4LTRjNzUtYWFiNC1lMTg3NzA4MDdiNGYifQ.fWpDKRCIq72DlJ_npxXPBQNjIPyBBbowaIMlZOkX6NI682Lcw9PD554hqRwfeoPkMx_YfuPTYDqfhBiagl__I9qeAFTLx4ItA6VZpmJAvGFkReVjJ0TNJlSk8gDtYUMnZGMFtP_OWJYm5jG9AZt1MlFY11sIPos7Pm7DvVUODexz_CObDTNgG2TXy0dCc6-HQYMUUSMIEhGM00mM35NCyLIBBUMFgtstD5HsC4GpTBPL20_cuqIgA4XPSt_hADGYGTtuRlvM6dAoSF0nb4Hn7sYtw9aQUsz4XLWS9_6JxryAb36YrgPhTyyP-5Uq7_FtdLTC2vfXMiCjc9gNvZ50Bw"
+                    }
+                  ]
+                },
+                {
                   "_postman_id": "b5e33f2f-e9d5-41e0-9c7d-f41aaeb9a675",
                   "name": "Hybrid flow",
                   "event": [
