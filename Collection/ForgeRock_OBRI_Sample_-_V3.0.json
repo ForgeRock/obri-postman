@@ -35141,7 +35141,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n   \"accountDatas\":[\n      {\n      \t \"account\": {\n            \"AccountId\": \"{{AccountId}}\"\n         },\n         \"balance\":{\n            \"AccountId\":\"{{AccountId}}\",\n            \"Amount\":{\n               \"Amount\":\"333\",\n               \"Currency\":\"GBP\"\n            },\n            \"CreditDebitIndicator\":\"Credit\",\n            \"Type\":\"ClosingAvailable\",\n            \"CreditLine\":{\n               \"Included\":false,\n               \"Amount\":{\n                  \"Amount\":\"333\",\n                  \"Currency\":\"GBP\"\n               },\n               \"Type\":\"Pre-Agreed\"\n            }\n         }\n      }\n   ]\n}"
+                  "raw": "{\n   \"accountDatas\":[\n      {\n      \t \"account\": {\n            \"AccountId\": \"{{AccountId}}\"\n         },\n         \"balances\": [\n            {\n                    \"AccountId\": \"{{AccountId}}\",\n                    \"CreditDebitIndicator\": \"Debit\",\n                    \"Type\": \"InterimAvailable\",\n                    \"DateTime\": \"2019-03-06T17:06:49+00:00\",\n                    \"Amount\": {\n                        \"Amount\": \"7319.23\",\n                        \"Currency\": \"GBP\"\n                    }\n                }\n        ]\n      }\n   ]\n}"
                 },
                 "url": "{{BANK}}/api/data/user"
               },
