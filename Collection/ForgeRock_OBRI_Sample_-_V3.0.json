@@ -34259,7 +34259,7 @@
             },
             {
               "_postman_id": "6bf4452d-8cf9-4226-a861-92b9435a240c",
-              "name": "Export user data Copy",
+              "name": "Import user data Copy",
               "event": [
                 {
                   "listen": "test",
