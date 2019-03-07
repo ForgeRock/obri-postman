@@ -20877,7 +20877,7 @@
                               },
                               {
                                 "key": "x-idempotency-key",
-                                "value": "FRESCO.21302.GFX.20"
+                                "value": "{{$guid}}"
                               },
                               {
                                 "key": "x-jws-signature",
