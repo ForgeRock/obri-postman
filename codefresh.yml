@@ -1,0 +1,22 @@
+version: '1.0'
+
+steps:
+  update-collection:
+    title: 'Update collection'
+    image: bash
+    working_directory: ${{main_clone}}
+    commands:
+      - curl -XPUT https://api.getpostman.com/collections/3deffe17-46ee-4332-8741-f0dfb087e7a9 -H "X-Api-Key: ${POSTMAN_API_TOKEN}" -d "@Collection/ForgeRock_OBRI_Sample_-_V3.0.json"
+    when:
+      branch:
+        only:
+          - master
+  update-environment:
+    title: 'Update environment'
+    image: bash
+    commands:
+      - curl -XPUT https://api.getpostman.com/environments/3c55ec13-c74b-4323-8146-698a3e4a624b -H "X-Api-Key: ${POSTMAN_API_TOKEN}" -d "@Environment/OpenBanking Engineering ob.postman_environment.json"
+    when:
+      branch:
+        only:
+          - master
